@@ -33,6 +33,9 @@
     .tabs { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
     .tab-btn { border: 1px solid #c7d3f5; background: #fff; color: #1f2a44; border-radius: 999px; padding: 7px 12px; font-size: 13px; cursor: pointer; }
     .tab-btn.active { background: #0b1446; color: #fff; border-color: #0b1446; }
+    .prompt-tools { margin-top: 10px; display: flex; align-items: center; gap: 8px; }
+    .copy-btn { border: 1px solid #c7d3f5; background: #fff; color: #1f2a44; border-radius: 8px; padding: 7px 12px; font-size: 13px; cursor: pointer; }
+    .copy-status { font-size: 12px; color: #d7e0ff; }
   </style>
 </head>
 <body>
@@ -73,6 +76,10 @@
         <label>ポジション別プロンプトを選択</label>
         <div id="noteRoleTabs" class="tabs"></div>
         <p class="scenario-note">選択したポジションに合わせて、プロンプト内容が切り替わります。</p>
+      </div>
+      <div class="prompt-tools">
+        <button id="copyPromptButton" class="copy-btn" type="button">クリップボードにコピー</button>
+        <span id="copyStatus" class="copy-status"></span>
       </div>
       <div id="geminiPrompt" class="prompt"></div>
     </section>
@@ -161,6 +168,14 @@
       });
     }
 
+    function normalizePromptText(text) {
+      return String(text || '').replaceAll('\\n', '\n');
+    }
+
+    function setPromptText(text) {
+      document.getElementById('geminiPrompt').textContent = normalizePromptText(text);
+    }
+
     function buildAnalyticsPrompt(scenarioId) {
       const selected = analyticsScenarioOptions.find((option) => option.id === scenarioId) || analyticsScenarioOptions[0];
       const beforeUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_${selected.date}_${selected.id}_before.json`;
@@ -181,9 +196,9 @@
         select.appendChild(el);
       }
       select.value = 'qa_improvement';
-      document.getElementById('geminiPrompt').textContent = buildAnalyticsPrompt(select.value);
+      setPromptText(buildAnalyticsPrompt(select.value));
       select.onchange = () => {
-        document.getElementById('geminiPrompt').textContent = buildAnalyticsPrompt(select.value);
+        setPromptText(buildAnalyticsPrompt(select.value));
       };
       panel.style.display = 'block';
     }
@@ -201,7 +216,7 @@
       tabsRoot.innerHTML = '';
 
       const selectRole = (roleId) => {
-        document.getElementById('geminiPrompt').textContent = geminiGuideMap.note.promptByRole[roleId] || '準備中';
+        setPromptText(geminiGuideMap.note.promptByRole[roleId] || '準備中');
         tabsRoot.querySelectorAll('.tab-btn').forEach((btn) => {
           btn.classList.toggle('active', btn.dataset.role === roleId);
         });
@@ -245,9 +260,20 @@
       } else if (category === 'note') {
         setupNoteRoleTabs();
       } else {
-        document.getElementById('geminiPrompt').textContent = guide ? guide.prompt : '準備中';
+        setPromptText(guide ? guide.prompt : '準備中');
       }
     }
+
+    document.getElementById('copyPromptButton').onclick = async () => {
+      const status = document.getElementById('copyStatus');
+      try {
+        await navigator.clipboard.writeText(document.getElementById('geminiPrompt').textContent || '');
+        status.textContent = 'コピーしました';
+      } catch (_) {
+        status.textContent = 'コピーに失敗しました';
+      }
+      setTimeout(() => { status.textContent = ''; }, 1800);
+    };
 
     loadUseCase().catch((error) => {
       document.getElementById('subtitle').textContent = '読み込みに失敗しました。';
