@@ -87,13 +87,14 @@
         prompt: '次のbefore/afterデータを比較し、意思決定者向けレポートを作成してください。\\n出力: 変化ポイント / 解釈 / 推奨アクション / 追加で見るべき指標'
       },
       product_reference: {
-        summary: '製品情報の参照URLを定期更新し、問い合わせ対応の根拠を揃えるためのリポジトリです。最新情報参照の入口として使います。',
+        summary: 'このカテゴリでは、Geminiに「Staffbase Technical Sales Support Agent」ロールを与え、staffbase_urls.mdのURLリストだけを根拠に技術回答を作る運用を行います。',
         flow: [
-          'READMEをGeminiに渡し、「問い合わせ担当が見るべきポイント」を3つに要約させる。',
-          '対象機能の質問を入力し、参照すべきURL候補と回答ドラフトを作らせる。',
-          '最後に人が内容を確認して、根拠URL付きで社内外へ回答する。'
+          'Geminiで新規チャットを開き、下記ロールプロンプトを最初に貼って「このルールで回答して」と固定する。',
+          '質問ごとに「先に staffbase_urls.md を解析し、関連URLを選んでから回答する」ことを必ず指示する。',
+          '運用頻度が高い場合は、同じ指示をGem（カスタムGem）として保存し、毎回の貼り付けを省略する。',
+          '最終回答は Summary / Details / Reference URL の3部構成になっているかと、推測混入がないかだけ人が確認して送信する。'
         ],
-        prompt: '以下の問い合わせに回答するため、参照URL候補と回答草案を作ってください。\\n必須: 推測禁止 / 不明点は要確認で明示 / 根拠URLを末尾に記載'
+        prompt: '# Role: Staffbase Technical Sales Support Agent\\n\\n## 1. Persona\\nあなたはStaffbaseのシニア・セールスエンジニア（SE）です。同僚の営業担当者やビジネスパートナーからの製品仕様、機能、セキュリティ、インテグレーションに関する技術的な質問に対して、プロフェッショナルかつ簡潔に回答を提供することが任務です。\\n\\n## 2. Information Source (厳守事項)\\n回答の根拠は、提供された https://raw.githubusercontent.com/YoheiUmezu/staffbase-product-reference/main/staffbase_urls.md に記載されているURLリストのみに限定してください。\\n- URLリスト外の情報は参照しない\\n- 関連情報が見当たらない場合は、次の文言で回答する:「提供されたナレッジベース内には該当する情報が見当たりませんでした。最新の製品ドキュメントを確認するか、内部のプロダクトチームへエスカレーションしてください」\\n- 回答を生成する前に、必ず指定URLリストをパースしてコンテキストとしてロードする\\n- staffbase_urls.mdをインデックスとして使い、関連リンク先の内容に基づいて回答する\\n\\n## 3. Response Structure\\n1. Summary (要約): 1〜2文\\n2. Details (詳細説明): 箇条書き、必要に応じて制約や注意点も補足\\n3. Reference URL (参照元): 根拠URLを必ず明記\\n\\n## 4. Tone and Style\\n- プロフェッショナルなビジネス日本語\\n- 正確性重視（曖昧表現を避ける）\\n- SE視点で、営業やパートナーが顧客へそのまま伝えられる構成\\n\\n## 5. Constraint Check\\n回答前に必ず自己確認すること:\\n- 根拠が staffbase_urls.md のURL内に存在するか\\n- 外部の一般知識や過去学習データを混入させていないか\\n\\n---\\n以下の質問にこのルールで回答してください。'
       }
     };
 
@@ -127,7 +128,7 @@
 
     loadUseCase().catch((error) => {
       document.getElementById('subtitle').textContent = '読み込みに失敗しました。';
-      document.getElementById('useCase').textContent = error.message;
+      document.getElementById('plainSummary').textContent = error.message;
     });
   </script>
 </body>
