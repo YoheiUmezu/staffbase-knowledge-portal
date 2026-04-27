@@ -78,13 +78,14 @@
         prompt: '以下のトピックを、添付のスライドルールに準拠して提案資料化してください。\\n出力: スライド番号 / タイトル / 1枚の要点 / 話す内容メモ'
       },
       analytics: {
-        summary: '施策のbefore/afterをシナリオで比較し、意思決定用レポートを作るためのリポジトリです。分析結果の読み解きに使います。',
+        summary: 'このカテゴリでは、Geminiに分析専用ロールを与えてBefore/After JSONを根拠に検索体験改善レポートを作成します。製造業向けの広報・DX担当が意思決定に使える粒度で出すことが目的です。',
         flow: [
-          'READMEのシナリオ説明をGeminiに読み込ませ、「どの業務判断に使えるか」を整理させる。',
-          '対象シナリオのbefore/afterデータを渡し、差分要点を3-5点に要約させる。',
-          '会議向けに「示唆・次アクション・注意点」を1ページ分で出力させる。'
+          'Geminiで新規チャットを開き、下記プロンプトを先に貼って分析ルール（JSON根拠必須・抽象論禁止）を固定する。',
+          '入力データとして report.md / before.json / after.json の3URLを必ず渡し、「改善幅（%）」と「改善/未改善の判定」を明示させる。',
+          '出力はエグゼクティブサマリー→KPI比較→改善クエリ分析→構造的インサイト→次アクション（優先度つき）の順にさせる。',
+          '定期運用する場合は、この指示をGem（カスタムGem）として保存し、毎回URLだけ差し替える運用にする。'
         ],
-        prompt: '次のbefore/afterデータを比較し、意思決定者向けレポートを作成してください。\\n出力: 変化ポイント / 解釈 / 推奨アクション / 追加で見るべき指標'
+        prompt: 'あなたはBtoB SaaS企業（特に製造業向け）のコンテンツ戦略担当です。\\n\\n以下のデータをもとに、社内ナレッジ改善の分析レポートを作成してください。\\n\\n# 入力データ\\n- 分析レポート（Markdown）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/report.md\\n\\n- Beforeデータ（JSON）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_20260426_qa_improvement_before.json\\n\\n- Afterデータ（JSON）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_20260426_qa_improvement_after.json\\n\\n# 目的\\n・検索体験（Search Experience）の改善結果を明確にする\\n・どのクエリで改善が起きたかを特定する\\n・今後のナレッジ改善アクションを提示する\\n\\n# 出力要件\\n1. エグゼクティブサマリー（5行以内、改善/未改善を明確化）\\n2. KPI比較（検索数/クリック数/CTR/成功率、改善幅%を必ず記載）\\n3. 改善クエリ分析（改善上位5クエリ、悪化クエリ、Before/After数値、変化理由の仮説）\\n4. 構造的インサイト（コンテンツ不足/検索意図とのズレ/UI導線）\\n5. 次アクション（どの記事をどう改善するか、新規作成記事、優先順位High/Medium/Low）\\n6. トーン: 日本語・ビジネス向け・具体化重視\\n\\n# 制約\\n- JSONデータを必ず根拠として使う\\n- 推測だけの記述は禁止\\n- 箇条書きを多用し、読みやすくする\\n\\nこの要件に厳密に従って出力してください。'
       },
       product_reference: {
         summary: 'このカテゴリでは、Geminiに「Staffbase Technical Sales Support Agent」ロールを与え、staffbase_urls.mdのURLリストだけを根拠に技術回答を作る運用を行います。',
