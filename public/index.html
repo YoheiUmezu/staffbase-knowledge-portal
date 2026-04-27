@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staffbase Knowledge Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f7fb; color: #1f2a44; }
+    header { background: #0b1446; color: #fff; padding: 24px; }
+    main { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+    .card h3 { margin: 0 0 8px; }
+    .card p { margin: 0 0 8px; font-size: 14px; }
+    .meta { font-size: 12px; color: #506080; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>業務ナレッジポータル</h1>
+    <p>何に使うかから選べる、非エンジニア向けガイド</p>
+  </header>
+  <main>
+    <section>
+      <h2>業務カテゴリ一覧</h2>
+      <div id="categories" class="grid"></div>
+    </section>
+  </main>
+  <script>
+    async function render() {
+      const res = await fetch('../data/index.json');
+      const data = await res.json();
+      const root = document.getElementById('categories');
+      for (const c of data.categories) {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `<h3>${c.title}</h3><p><strong>何に使うか:</strong> ${c.use_case || '準備中'}</p><p class="meta">doc: ${c.doc}</p><p class="meta">data: ${c.data}</p>`;
+        root.appendChild(card);
+      }
+    }
+    render();
+  </script>
+</body>
+</html>

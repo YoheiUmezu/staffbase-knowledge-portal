@@ -1,0 +1,42 @@
+{
+  "portal_name": "staffbase-knowledge-portal",
+  "description": "非エンジニア向けの業務ナレッジポータル",
+  "last_updated": "2026-04-27T09:46:41.448190+00:00",
+  "categories": [
+    {
+      "id": "rfp",
+      "title": "RFP回答支援",
+      "doc": "docs/rfp.md",
+      "data": "data/rfp.json",
+      "use_case": "顧客RFPへの回答品質を上げたいとき"
+    },
+    {
+      "id": "note",
+      "title": "記事下書き生成",
+      "doc": "docs/note.md",
+      "data": "data/note.json",
+      "use_case": "毎日の情報発信の下書きを効率化したいとき"
+    },
+    {
+      "id": "slides",
+      "title": "スライド生成",
+      "doc": "docs/slides.md",
+      "data": "data/slides.json",
+      "use_case": "ブランド統一された提案資料を短時間で作りたいとき"
+    },
+    {
+      "id": "analytics",
+      "title": "分析シナリオ",
+      "doc": "docs/analytics.md",
+      "data": "data/analytics.json",
+      "use_case": "施策前後の効果をシナリオ別に比較したいとき"
+    },
+    {
+      "id": "product_reference",
+      "title": "製品リファレンス",
+      "doc": "docs/product_reference.md",
+      "data": "data/product_reference.json",
+      "use_case": "製品仕様の最新参照先をすぐ確認したいとき"
+    }
+  ]
+}

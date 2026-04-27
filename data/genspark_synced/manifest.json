@@ -1,0 +1,17 @@
+[
+  {
+    "name": "note_manus",
+    "source": "https://raw.githubusercontent.com/YoheiUmezu/note-article/main/manus_input.md",
+    "saved_to": "data/genspark_synced/note_manus.md"
+  },
+  {
+    "name": "analytics_index",
+    "source": "https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/scenario_index.json",
+    "saved_to": "data/genspark_synced/analytics_index.json"
+  },
+  {
+    "name": "product_urls",
+    "source": "https://raw.githubusercontent.com/YoheiUmezu/staffbase-product-reference/main/staffbase_urls.md",
+    "saved_to": "data/genspark_synced/product_urls.md"
+  }
+]

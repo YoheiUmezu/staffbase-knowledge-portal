@@ -1,0 +1,1316 @@
+{
+  "meta": {
+    "source": "Staffbase のご紹介.pdf",
+    "total_slides": 27,
+    "description": "StaffbaseプレゼンテーションPDFから抽出したデザインテンプレート。AIによるスライド生成時の参照用。",
+    "usage_guide": "slide_type_templatesで各スライドタイプのデザインルールを参照し、color_systemでブランドカラーを取得してください。"
+  },
+  "color_system": {
+    "brand_primary": "#FFAA1E",
+    "brand_secondary": "#7B3BD9",
+    "brand_dark_bg": "#070E44",
+    "brand_white": "#FFFFFF",
+    "palette_summary": {
+      "background_colors": [
+        "#0B1446",
+        "#0B0E3B",
+        "#0B1240",
+        "#0B1440",
+        "#0B1140"
+      ],
+      "primary_colors": [
+        "#FFFFFF",
+        "#F7941D",
+        "#FFAA1E",
+        "#FF8C00",
+        "#33B5FF"
+      ],
+      "accent_colors": [
+        "#F7941D",
+        "#7B3BD9",
+        "#F59E0B",
+        "#007AFF",
+        "#FF9B00"
+      ],
+      "text_colors": [
+        "#FFFFFF",
+        "#0B1446",
+        "#0A0A4A"
+      ]
+    },
+    "notes": "濃紺(#070E44)が主背景。オレンジ(#FFAA1E)がCTA・強調。紫(#7B3BD9)がアクセント。白テキストが基本。"
+  },
+  "typography": {
+    "font_family": "sans-serif（Noto Sans / Helvetica Neue 系推定）",
+    "title_weight": "bold（700以上）",
+    "body_weight": "regular（400）",
+    "title_characteristics": "大文字・グラデーション使用あり、視認性重視",
+    "body_characteristics": "左揃え、行間広め、コンパクトな箇条書き",
+    "language_support": "日本語・英語混在（日本語サブタイトル＋英語タイトルの組み合わせが多い）"
+  },
+  "layout_system": {
+    "slide_aspect_ratio": "16:9",
+    "common_layouts": [
+      {
+        "name": "left_aligned",
+        "description": "テキストを左寄せ、右側に画像・イラストを配置",
+        "use_case": "コンテンツスライド、機能説明"
+      },
+      {
+        "name": "centered",
+        "description": "中央揃えでタイトルと統計数値を大きく表示",
+        "use_case": "カバー、セクション区切り、統計強調"
+      },
+      {
+        "name": "two_column",
+        "description": "左右2カラムで比較・並列情報を表示",
+        "use_case": "比較、機能一覧、Before/After"
+      },
+      {
+        "name": "full_bleed",
+        "description": "背景画像・グラデーションをフル活用",
+        "use_case": "カバー、クロージング、インパクト訴求"
+      },
+      {
+        "name": "grid",
+        "description": "複数のカードやアイコンをグリッド状に配置",
+        "use_case": "機能一覧、ロゴ一覧、実績紹介"
+      }
+    ]
+  },
+  "slide_type_templates": {
+    "cover": {
+      "typical_layout": "left_aligned",
+      "typical_background_color": "#070E44",
+      "typical_primary_color": "#FFAA1E",
+      "typical_accent_color": "#7B3BD9",
+      "typical_text_color": "#FFFFFF",
+      "font": {
+        "family": "sans-serif",
+        "weight": "bold"
+      },
+      "common_visual_elements": [
+        "グラデーションテキスト",
+        "ロゴアイコン",
+        "角丸の背景ボックス"
+      ],
+      "design_notes": [
+        "タイトルの『INSPIRED』は青から紫、オレンジへのグラデーション。背景は濃紺で角が丸く処理されている。テキストは左寄せで余白を十分に確保し、視認性を高めている。"
+      ]
+    },
+    "stats": {
+      "typical_layout": "grid",
+      "typical_background_color": "#0B0E3B",
+      "typical_primary_color": "#FFFFFF",
+      "typical_accent_color": "#F59E0B",
+      "typical_text_color": "#FFFFFF",
+      "font": {
+        "family": "sans-serif",
+        "weight": "bold"
+      },
+      "common_visual_elements": [
+        "グラデーションのタイトル文字（青から紫、オレンジへのグラデーション）",
+        "縦線の区切り線（青色）",
+        "ロケットの絵文字",
+        "白背景のボックス",
+        "縦の区切り線で3つの主要数値を分割",
+        "認証・受賞バッジのアイコン群",
+        "Gartnerのリーダー評価を示す吹き出しとロゴ",
+        "複雑に絡み合ったオレンジ色の線の図",
+        "各コミュニケーションツール名の白背景ラベル"
+      ],
+      "design_notes": [
+        "タイトルのINSPIREDは青から紫、オレンジへのグラデーション。数字は大きく太字で強調。各統計は縦線で区切られ、白背景のボックス内に配置。余白を広く取り、読みやすさを確保。",
+        "上部は濃紺背景に白文字で強調。主要数値は大きく太字。下部は白背景にアイコンと説明文を横並び配置。右下にオレンジのアクセントカラーの四角形。余白を広く取り視認性を高めている。",
+        "左側にテキストを縦に揃え、右側に複雑な線の図を配置。アクセントカラーのオレンジ線が視線を誘導し、重要なキーワード「複雑さ」をオレンジ色で強調。余白を十分に取り、情報の見やすさを確保。"
+      ]
+    },
+    "content": {
+      "typical_layout": "two_column",
+      "typical_background_color": "#0B1446",
+      "typical_primary_color": "#FFFFFF",
+      "typical_accent_color": "#F7941D",
+      "typical_text_color": "#FFFFFF",
+      "font": {
+        "family": "sans-serif",
+        "weight": "bold"
+      },
+      "common_visual_elements": [
+        "折れ線グラフ（青とオレンジ）",
+        "円形ハイライト（薄青）",
+        "矢印付きテキストボックス（青とオレンジ）",
+        "絵文字（指差し）",
+        "箇条書きの青い縦線",
+        "4分割の写真",
+        "通知ベルアイコン（写真上に重ねて配置）",
+        "グラデーションを用いた大きなタイトルテキスト",
+        "複数のスクリーンショット画像",
+        "各スクリーンショットに白色の小さなラベルテキスト"
+      ],
+      "design_notes": [
+        "タイトル部分は濃紺背景に白太字で強調。グラフは白背景で見やすく、色分けされた線と矢印で二極化を視覚的に表現。円形ハイライトで重要ポイントを示し、余白を十分に確保して情報が詰まりすぎないようにしている。",
+        "背景は濃紺の単色で統一し、テキストは白で高いコントラストを確保。写真はグリッドレイアウトで均等に配置し、通知ベルアイコンでデジタルコミュニケーションを示唆。余白を十分に取り、情報が詰まりすぎないようにしている。",
+        "タイトルは青から紫、オレンジへのグラデーションで強調。背景は濃紺でテキストは白。スクリーンショットはグリッド状に配置し、余白を十分にとって見やすくしている。小ラベルは白字で各画像の内容を簡潔に示す。",
+        "見出しはオレンジ色で強調し、本文は白色で読みやすく配置。画像は右側に集約し、左側にテキストを縦に整列。背景は濃紺で全体のコントラストを高めている。余白を十分に取り、情報が詰まりすぎないようにしている。",
+        "背景は濃紺で統一し、タイトルの一部をアクセントカラーで強調。画像は左側に大きく配置し、右側に箇条書きテキストを整列。余白を十分に取り、視認性を高めている。",
+        "背景は濃紺の単色で、タイトルの一部をオレンジで強調。画像は左側に大きく配置し、右側に箇条書きテキストを縦に整列。余白を十分に取り、視認性を高めている。",
+        "タイトルの一部をオレンジ色で強調し視線誘導。企業ロゴは均等なグリッド配置で整然と並べる。背景は濃紺で白文字を際立たせ、白背景のロゴエリアは角丸で柔らかい印象。余白を十分に取り、情報が詰まりすぎないようにしている。",
+        "背景は濃紺で統一し、テキストは白で高いコントラスト。重要語句はオレンジ色で強調。左右に情報を分割し、中央に画像を配置。余白を十分に取り、読みやすさを確保。",
+        "背景は濃紺の単色で統一。タイトルの一部をオレンジ色で強調。本文は左寄せで整列し、青の縦線でセクションを区切る。画像は右側に縦に3つ配置し、余白を十分に確保。全体的にシンプルで見やすい構成。",
+        "背景は濃紺の単色で統一。タイトルの一部文字をオレンジ系のアクセントカラーで強調。テキストは白で高いコントラスト。画像は左下と右下に分割配置し、テキストは左上から右上にかけて配置。余白を十分に取り、視認性を確保。",
+        "タイトルの一部テキストはオレンジ色で強調。左側テキストは白背景の角丸ボックス内に配置し、右側に画像を配置。全体的に余白を十分に取り、読みやすさを確保。背景は濃紺でコントラストを強調。",
+        "背景は濃紺の単色。タイトルの一部にオレンジ色を使用し強調。本文は白色で左寄せ。吹き出しやボックスは白背景で角丸。余白を広く取り、情報を整理して見やすく配置。",
+        "左側は濃紺背景に白文字で情報を整理。右側はオレンジの引用ボックスとグラデーション背景の図を配置し視線誘導。角丸の引用ボックスがアクセント。余白を十分に取り、情報の区分けが明確。",
+        "右側の画像部分は角丸の四角形で区切られ、背景色が青とオレンジの2色に分かれている。左側は濃紺背景にオレンジと白のテキスト。箇条書きの各項目は青い縦線で強調。余白は十分に取り、読みやすさを確保。",
+        "左側に3つの段落を縦に並べ、右側に引用文とロゴ・写真を縦に配置。背景は濃紺で、見出しの一部を青色にして強調。余白を広く取り、情報の区切りを明確にしている。",
+        "左側は濃紺背景に白文字で情報を整理し、右上にオレンジ背景の引用エリアを配置。写真はスライド下部に横並びで配置し、情報の区切りに青い縦線を使用。余白を十分に取り、情報の階層が明確。",
+        "上部に濃紺の背景帯があり、タイトルテキストは白とオレンジの強調色で構成。本文は白背景に2カラムレイアウトで青の縦線で区切られている。写真は右側に縦に2枚配置されている。余白は十分に取られており、視認性が高い。",
+        "タイトルは背景色の濃紺に白文字で強調し、キーワードはオレンジ色でアクセント。本文は3カラム形式で区切り線を用いて情報を整理。ロゴや認証バッジは下部に配置し視覚的な信頼感を演出。余白を十分に取り、情報の読みやすさを確保。"
+      ]
+    },
+    "section_divider": {
+      "typical_layout": "grid",
+      "typical_background_color": "#0B1440",
+      "typical_primary_color": "#FFFFFF",
+      "typical_accent_color": "#FF9B00",
+      "typical_text_color": "#FFFFFF",
+      "font": {
+        "family": "sans-serif",
+        "weight": "bold"
+      },
+      "common_visual_elements": [
+        "グラデーションテキスト",
+        "新聞記事のモノクロ写真",
+        "SNSツイートのスクリーンショット",
+        "スピーチ写真",
+        "書籍表紙",
+        "詩のテキスト",
+        "上部に水色の横長バー",
+        "本文テキストの一部にオレンジ色の強調"
+      ],
+      "design_notes": [
+        "タイトルのINSPIRATIONは青から紫、ピンク、オレンジへのグラデーション。背景は濃紺で、本文エリアは白背景に角丸。画像はグリッド状に整列し、余白を均等に配置。テキストは白で統一し、視認性を確保。",
+        "背景は濃紺で角が丸い長方形。上部に水色の細長い帯。本文は左寄せで大きく太字。キーワードをオレンジ色で強調。余白を広く取り、視認性を高めている。"
+      ]
+    },
+    "comparison": {
+      "typical_layout": "two_column",
+      "typical_background_color": "#F0F0F0",
+      "typical_primary_color": "#0B1A4D",
+      "typical_accent_color": "#F18F43",
+      "typical_text_color": "#FFFFFF",
+      "font": {
+        "family": "sans-serif",
+        "weight": "bold"
+      },
+      "common_visual_elements": [
+        "矢印アイコン",
+        "パーセンテージ数値",
+        "VSの円形アイコン",
+        "メール編集画面のUI要素",
+        "色付きの縦線（青）",
+        "オレンジ色の3段ピラミッド図",
+        "青色の三角形図形",
+        "Staffbaseロゴ（白色）",
+        "Microsoft Partnerロゴ",
+        "チェックマークアイコン（緑色）"
+      ],
+      "design_notes": [
+        "左側のテキストは青い縦線で区切りを強調。タイトルの一部にアクセントカラーを使用し視線誘導。右側の数値は大きく太字で強調。背景は淡いグレーで全体のコントラストを調整。余白を広く取り、情報の区分けが明確。",
+        "背景は濃紺で統一し、オレンジと青のコントラストを強調。テキストは白で視認性高い。右側の説明ボックスは白背景で角丸。余白を広く取り、要素間のバランスを良くしている。"
+      ]
+    },
+    "list": {
+      "typical_layout": "two_column",
+      "typical_background_color": "#FFFFFF",
+      "typical_primary_color": "#0A0A4A",
+      "typical_accent_color": "#1A73E8",
+      "typical_text_color": "#0A0A4A",
+      "font": {
+        "family": "sans-serif",
+        "weight": "bold（タイトル）、regular（本文）"
+      },
+      "common_visual_elements": [
+        "電球のアイコン（タイトルの最後に配置）",
+        "角が丸い白背景のテキストボックス"
+      ],
+      "design_notes": [
+        "左側に白背景の角丸ボックスを配置し、テキストを整然と表示。右側に写真を配置し視線を誘導。タイトルは太字で強調し、質問リストは番号付きでアクセントカラーの数字を使用。余白を十分に取り、読みやすさを確保。"
+      ]
+    }
+  },
+  "logo_usage": {
+    "position": "top_left（標準）",
+    "appears_on": "全スライド",
+    "notes": "Staffbaseロゴ（アイコン＋テキスト）を左上に常時配置"
+  },
+  "design_principles": [
+    "濃紺背景を基調とし、白テキストで高コントラストを確保",
+    "オレンジ(#FFAA1E)を数値・CTA・強調に使用してブランドを統一",
+    "紫(#7B3BD9)をグラデーションのアクセントとして活用",
+    "タイトルにグラデーションテキスト（青→紫→オレンジ）を使用",
+    "余白を十分に確保し、情報の詰め込みを避ける",
+    "アイコン・イラストを積極的に活用して視覚的に分かりやすく",
+    "統計数値は大きなフォントで中央配置し、インパクトを最大化",
+    "角丸のカード・ボックスで柔らかさと現代感を演出"
+  ],
+  "slides": [
+    {
+      "slide_number": 1,
+      "slide_type": "cover",
+      "topic": "チームの成果を高めるためのインスピレーションとコミュニケーションの重要性",
+      "content": {
+        "title": "INSPIRED",
+        "subtitle": "TEAMS ACHIEVE MORE",
+        "body_text": [
+          "インスピレーションはコミュニケーションから"
+        ],
+        "image_description": "Staffbaseのロゴアイコン"
+      },
+      "design": {
+        "layout": "left_aligned",
+        "background_color": "#070E44",
+        "primary_color": "#FFAA1E",
+        "accent_color": "#7B3BD9",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で視認性が高く、タイトルはグラデーションカラーを使用"
+        },
+        "has_logo": true,
+        "logo_position": "top_left",
+        "visual_elements": [
+          "グラデーションテキスト",
+          "ロゴアイコン",
+          "角丸の背景ボックス"
+        ],
+        "design_notes": "タイトルの『INSPIRED』は青から紫、オレンジへのグラデーション。背景は濃紺で角が丸く処理されている。テキストは左寄せで余白を十分に確保し、視認性を高めている。"
+      }
+    },
+    {
+      "slide_number": 2,
+      "slide_type": "stats",
+      "topic": "インスパイアされた従業員を持つ企業の成果に関する統計情報",
+      "content": {
+        "title": "INSPIRED",
+        "subtitle": "Companies with INSPIRED employees win 🚀",
+        "body_text": [
+          "85% クリエイティビティとイノベーションの向上",
+          "出典:2023 EY US Empathy in Business Survey",
+          "75% 従業員のコミットメントの向上",
+          "出典:マッキンゼー2021『Making work meaningful from the C-suite to the frontline』",
+          "2倍 顧客満足度の向上",
+          "出典:MIT CISR、『Building business value with employee experience』"
+        ],
+        "image_description": "ロケットの絵文字"
+      },
+      "design": {
+        "layout": "grid",
+        "background_color": "#0B1446",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#F59E0B",
+        "text_color": "#0B1446",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "タイトルはグラデーションカラーで太字、大きなフォントサイズ。本文は読みやすいサンセリフ体で通常太さ。"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "グラデーションのタイトル文字（青から紫、オレンジへのグラデーション）",
+          "縦線の区切り線（青色）",
+          "ロケットの絵文字",
+          "白背景のボックス"
+        ],
+        "design_notes": "タイトルのINSPIREDは青から紫、オレンジへのグラデーション。数字は大きく太字で強調。各統計は縦線で区切られ、白背景のボックス内に配置。余白を広く取り、読みやすさを確保。"
+      }
+    },
+    {
+      "slide_number": 3,
+      "slide_type": "content",
+      "topic": "仕事の二極化の進行と企業が求める人材の変化",
+      "content": {
+        "title": "「仕事」の大きな二極化が進んでいます",
+        "subtitle": "",
+        "body_text": [
+          "企業が成功するために”人材”に求めるもの",
+          "産業革命",
+          "週40時間労働",
+          "デジタル化",
+          "AIと自動化",
+          "リスキリング",
+          "ビジネスモデルの適応",
+          "労働力の疲弊",
+          "インスパイアされた業務 Inspired Work",
+          "トランザクション業務 Transactional Work"
+        ],
+        "image_description": "時間軸に沿った2本の折れ線グラフ。青色の線はインスパイアされた業務（Inspired Work）を示し、右上に上昇。オレンジ色の線はトランザクション業務（Transactional Work）を示し、右下に下降。グラフ上に「AIと自動化」「リスキリング」「ビジネスモデルの適応」「労働力の疲弊」などの注釈がある。背景に薄い青の円形ハイライト。"
+      },
+      "design": {
+        "layout": "left_aligned",
+        "background_color": "#0B1243",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#007AFF",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、見出しは大きく強調されている。本文はやや小さめで整然と配置。"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "折れ線グラフ（青とオレンジ）",
+          "円形ハイライト（薄青）",
+          "矢印付きテキストボックス（青とオレンジ）",
+          "絵文字（指差し）"
+        ],
+        "design_notes": "タイトル部分は濃紺背景に白太字で強調。グラフは白背景で見やすく、色分けされた線と矢印で二極化を視覚的に表現。円形ハイライトで重要ポイントを示し、余白を十分に確保して情報が詰まりすぎないようにしている。"
+      }
+    },
+    {
+      "slide_number": 4,
+      "slide_type": "section_divider",
+      "topic": "コミュニケーションを起点としたインスピレーションの重要性",
+      "content": {
+        "title": "INSPIRATION",
+        "subtitle": "コミュニケーションから始まる",
+        "body_text": [],
+        "image_description": "月面着陸の新聞記事、#MeToo運動のツイート、卒業式でのスピーチ写真、オプラ・ウィンフリーの講演写真、レイチェル・カーソンの著書『沈黙の春』の表紙、マヤ・アンジェロウの詩『Still I Rise』のテキスト"
+      },
+      "design": {
+        "layout": "grid",
+        "background_color": "#0B1440",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#FF9B00",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "大文字の太字でグラデーションカラーを使用し、視認性が高い"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "グラデーションテキスト",
+          "新聞記事のモノクロ写真",
+          "SNSツイートのスクリーンショット",
+          "スピーチ写真",
+          "書籍表紙",
+          "詩のテキスト"
+        ],
+        "design_notes": "タイトルのINSPIRATIONは青から紫、ピンク、オレンジへのグラデーション。背景は濃紺で、本文エリアは白背景に角丸。画像はグリッド状に整列し、余白を均等に配置。テキストは白で統一し、視認性を確保。"
+      }
+    },
+    {
+      "slide_number": 5,
+      "slide_type": "content",
+      "topic": "現代のコミュニケーションにおける複雑さと課題について",
+      "content": {
+        "title": "現代のコミュニケーションの難しさ",
+        "subtitle": "",
+        "body_text": [
+          "複雑なコミュニケーション環境",
+          "増加するデジタルノイズ",
+          "従業員と雇用者の距離感の変化",
+          "雇用者同士の関係における緊張"
+        ],
+        "image_description": "ノートパソコンで作業する人、スマートフォンを操作する女性、工場内を歩く作業員、オフィスの空席の写真が4分割で配置されている"
+      },
+      "design": {
+        "layout": "grid",
+        "background_color": "#0A0A4A",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#3A7BD5",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、見出しは大きめのサイズ、本文は中程度のサイズで整然と配置"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "箇条書きの青い縦線",
+          "4分割の写真",
+          "通知ベルアイコン（写真上に重ねて配置）"
+        ],
+        "design_notes": "背景は濃紺の単色で統一し、テキストは白で高いコントラストを確保。写真はグリッドレイアウトで均等に配置し、通知ベルアイコンでデジタルコミュニケーションを示唆。余白を十分に取り、情報が詰まりすぎないようにしている。"
+      }
+    },
+    {
+      "slide_number": 6,
+      "slide_type": "section_divider",
+      "topic": "新しい時代におけるリーダーシップに必要な新しいプラットフォームの重要性",
+      "content": {
+        "title": "",
+        "subtitle": "",
+        "body_text": [
+          "この新しい時代におけるリーダーシップには、",
+          "新しいプラットフォーム",
+          "が必要です"
+        ],
+        "image_description": ""
+      },
+      "design": {
+        "layout": "left_aligned",
+        "background_color": "#0B1140",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#E38B4D",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、モダンなサンセリフ体"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "上部に水色の横長バー",
+          "本文テキストの一部にオレンジ色の強調"
+        ],
+        "design_notes": "背景は濃紺で角が丸い長方形。上部に水色の細長い帯。本文は左寄せで大きく太字。キーワードをオレンジ色で強調。余白を広く取り、視認性を高めている。"
+      }
+    },
+    {
+      "slide_number": 7,
+      "slide_type": "content",
+      "topic": "従業員とのコミュニケーションにStaffbase Communications Cloudを使用することの紹介",
+      "content": {
+        "title": "INSPIRE",
+        "subtitle": "従業員とのコミュニケーションには“Staffbase Communications Cloud”を使用します",
+        "body_text": [
+          "Employee App",
+          "Intranet",
+          "Email",
+          "SMS",
+          "Digital Signage",
+          "Microsoft 365"
+        ],
+        "image_description": "Staffbase Communications Cloudの各種画面イメージ（従業員アプリ、イントラネット、メール、SMS、デジタルサイネージ、Microsoft 365のインターフェース）を並べて表示"
+      },
+      "design": {
+        "layout": "grid",
+        "background_color": "#0B0E3B",
+        "primary_color": "#FF8C00",
+        "accent_color": "#7B4BFF",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で視認性が高く、タイトルはグラデーションカラーを使用し強調"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "グラデーションを用いた大きなタイトルテキスト",
+          "複数のスクリーンショット画像",
+          "各スクリーンショットに白色の小さなラベルテキスト",
+          "グラフやチャートのUI要素が含まれるスクリーンショット"
+        ],
+        "design_notes": "タイトルは青から紫、オレンジへのグラデーションで強調。背景は濃紺でテキストは白。スクリーンショットはグリッド状に配置し、余白を十分にとって見やすくしている。小ラベルは白字で各画像の内容を簡潔に示す。"
+      }
+    },
+    {
+      "slide_number": 8,
+      "slide_type": "content",
+      "topic": "強力なコミュニケーションツールを提供し、従業員を目標に向かって一致団結させる方法",
+      "content": {
+        "title": "強力なコミュニケーションツールを提供する事で、目標に向かって従業員を一致団結させる",
+        "subtitle": "",
+        "body_text": [
+          "変革の中で、明確でクリーンなリーダーシップコミュニケーションを通じて、従業員にインスピレーションを与える",
+          "従業員を活性化し、会社の価値観を自分のものとして受け入れさせ、戦略に貢献させる",
+          "戦略的なコミュニケーションを通じて、内側からブランドの価値を構築する",
+          "従業員の共感度や、戦略的取り組みへの一致度を理解する"
+        ],
+        "image_description": "複数のダッシュボード画面のスクリーンショット。電気自動車に関するキャンペーン管理画面、感情分析の数値表示、CEOのポッドキャスト記事画面、CEOへの質問フォームのUIが重なって表示されている。"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1446",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#F59C4B",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で視認性が高く、見出しはオレンジ色のアクセントがある"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "ダッシュボードUIスクリーンショット",
+          "感情分析バーグラフ",
+          "スマートフォンUI画面",
+          "フォーム入力UI"
+        ],
+        "design_notes": "見出しはオレンジ色で強調し、本文は白色で読みやすく配置。画像は右側に集約し、左側にテキストを縦に整列。背景は濃紺で全体のコントラストを高めている。余白を十分に取り、情報が詰まりすぎないようにしている。"
+      }
+    },
+    {
+      "slide_number": 9,
+      "slide_type": "content",
+      "topic": "従業員と顧客の満足を引き出す本物の企業文化の創造について",
+      "content": {
+        "title": "従業員と顧客の満足を引き出す、\n本物の企業文化を創造する",
+        "subtitle": "",
+        "body_text": [
+          "従業員が会社の目的と価値観に結びついた、統一された本物の文化を創造する",
+          "グローバルで統一されたコミュニケーションと、地域性に合わせたつながり、を両立する",
+          "社内からブランドの熱狂的なファンを育てる",
+          "ピア・ツー・ピアのつながりと従業員の声を活用し、全員が参加しやすい環境を作り出す"
+        ],
+        "image_description": "多様な人々が肩を組んでいる写真を背景にした社内SNSの画面イメージと、メッセージ通知やいいねアイコン、フィードバックスライダーなどのインターフェース要素の重ね表示"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0A0E44",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#D17A2B",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、強調部分はオレンジ系のアクセントカラーを使用"
+        },
+        "has_logo": true,
+        "logo_position": "top_left",
+        "visual_elements": [
+          "社内SNS画面のスクリーンショット風イメージ",
+          "メッセージ通知ポップアップ",
+          "いいねアイコン",
+          "フィードバックスライダー",
+          "多様な人々の写真"
+        ],
+        "design_notes": "背景は濃紺で統一し、タイトルの一部をアクセントカラーで強調。画像は左側に大きく配置し、右側に箇条書きテキストを整列。余白を十分に取り、視認性を高めている。"
+      }
+    },
+    {
+      "slide_number": 10,
+      "slide_type": "content",
+      "topic": "従業員が活用できる知識とリソースを提供し、業務の質を向上させる方法",
+      "content": {
+        "title": "従業員が活用できる知識とリソースを提供することで、業務の質を向上させる",
+        "subtitle": "",
+        "body_text": [
+          "従業員との信頼を築き、ブランドの評価を確固たる物にするために、効果的な危機管理コミュニケーションを実施する",
+          "現場が必要とするツールとサービスに、便利なアクセスポイントを提供して支援する",
+          "法的およびコンプライアンスリスクを軽減するために、方針とリソースへの広範なアクセスを確保する",
+          "業務の効率性を向上させ、プロセスをスムーズにし、知識の流れを改善する。"
+        ],
+        "image_description": "従業員向けの安全管理ハブのウェブ画面のスクリーンショット。チャットメッセージ、音声メッセージ、プロフィール写真、タスク進捗やスケジュール情報が表示されている。"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0A1247",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#E07A00",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、見出しは強調色のオレンジを使用"
+        },
+        "has_logo": true,
+        "logo_position": "top_left",
+        "visual_elements": [
+          "スクリーンショット画像",
+          "チャット吹き出し",
+          "音声メッセージプレーヤー",
+          "プロフィール写真",
+          "進捗バー",
+          "アイコン付きタスクカード"
+        ],
+        "design_notes": "背景は濃紺の単色で、タイトルの一部をオレンジで強調。画像は左側に大きく配置し、右側に箇条書きテキストを縦に整列。余白を十分に取り、視認性を高めている。"
+      }
+    },
+    {
+      "slide_number": 11,
+      "slide_type": "stats",
+      "topic": "Staffbaseのグローバルな顧客数、利用者数、市場評価に関する実績紹介",
+      "content": {
+        "title": "",
+        "subtitle": "",
+        "body_text": [
+          "2,500 グローバル企業のお客様",
+          "1,500万 利用者数",
+          "11億ドル（1700億円）＊2024年6月時点 市場評価10億ドル以上のユニコーン企業",
+          "強力なセキュリティ基準と99.9%のシステム稼働率",
+          "「G2」で2年連続トップランクの従業員コミュニケーションソフトウェア",
+          "「ClearBox 2023 Choice Award」5 outstanding rankings受賞",
+          "「Gartner Peer Insights」の推薦率は96%で、複数のガイドで紹介されています"
+        ],
+        "image_description": "Staffbaseロゴ、ISO27001認証バッジ、G2 Leaderバッジ、ClearBox Choice 2024バッジ、Gartnerロゴ、Gartnerリーダー評価のビジュアル"
+      },
+      "design": {
+        "layout": "grid",
+        "background_color": "#0B0E3B",
+        "primary_color": "#33B5FF",
+        "accent_color": "#FF9A1B",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "数字は太字で大きく、説明文はやや小さめで読みやすいサンセリフ体"
+        },
+        "has_logo": true,
+        "logo_position": "top_left",
+        "visual_elements": [
+          "縦の区切り線で3つの主要数値を分割",
+          "認証・受賞バッジのアイコン群",
+          "Gartnerのリーダー評価を示す吹き出しとロゴ"
+        ],
+        "design_notes": "上部は濃紺背景に白文字で強調。主要数値は大きく太字。下部は白背景にアイコンと説明文を横並び配置。右下にオレンジのアクセントカラーの四角形。余白を広く取り視認性を高めている。"
+      }
+    },
+    {
+      "slide_number": 12,
+      "slide_type": "content",
+      "topic": "従業員向けコミュニケーションにおける世界的リーダー企業の紹介",
+      "content": {
+        "title": "従業員向けコミュニケーションの世界的リーダー",
+        "subtitle": "それぞれの業界でトップを走るお客様たち",
+        "body_text": [],
+        "image_description": "DHL、ALDI、Walgreens、Allianz、SEPHORA、Paulaner、adidas、CocaCola、GE、Microsoft、John Deere、HITACHI、BRINKS、Mercedes-Benz、H&R BLOCK、SAMSUNG、Great Clips、Deutsche Telekom、Mister、Domino's、Lufthansa Cargo、KTM、MaxMara、American Red Cross、EDF renewables、MAN、MARKS & SPENCER、verisure、Vestas、VOLVOのロゴが並ぶ企業ロゴ一覧"
+      },
+      "design": {
+        "layout": "grid",
+        "background_color": "#0B1140",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#E68A2E",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすいゴシック系フォント、タイトルは大きく強調、本文は小さめでシンプル"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "企業ロゴ",
+          "角丸の白背景ボックス",
+          "タイトルのオレンジ色強調テキスト",
+          "上部の濃紺背景バー"
+        ],
+        "design_notes": "タイトルの一部をオレンジ色で強調し視線誘導。企業ロゴは均等なグリッド配置で整然と並べる。背景は濃紺で白文字を際立たせ、白背景のロゴエリアは角丸で柔らかい印象。余白を十分に取り、情報が詰まりすぎないようにしている。"
+      }
+    },
+    {
+      "slide_number": 13,
+      "slide_type": "content",
+      "topic": "従業員向けコミュニケーションプラットフォームの特徴とチャネル融合についての説明",
+      "content": {
+        "title": "優れたコミュニケーションと最高水準のチャネルの融合",
+        "subtitle": "従業員向けイントラネットやアプリと融合したコミュニケーションプラットフォーム",
+        "body_text": [
+          "プランニング",
+          "キャンペーン",
+          "コンテンツ制作",
+          "ターゲティング",
+          "モニタリング",
+          "分析",
+          "“Staffbaseはコミュニケーション部門のニーズを理解しており、製品はそれに基づいて設計されています”",
+          "– ClearBox コンサルティング",
+          "チャネル Owned Channels",
+          "従業員用アプリ",
+          "イントラネット",
+          "従業員とのタッチポイント",
+          "Eメール",
+          "SharePoint & Teams",
+          "デジタルサイネージ",
+          "SMS"
+        ],
+        "image_description": "コミュニケーションプラットフォームのダッシュボード画面のスクリーンショット。編集カレンダー、ユーザーアクティビティグラフ、トップ投稿、送信済みメールなどのウィジェットが表示されている。"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1440",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#F7941D",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、見出しは強調色のオレンジを部分的に使用"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "スクリーンショットのダッシュボードUI",
+          "縦のライン（青とオレンジ）による区切り",
+          "グラフ",
+          "アイコン",
+          "箇条書きテキスト"
+        ],
+        "design_notes": "背景は濃紺で統一し、テキストは白で高いコントラスト。重要語句はオレンジ色で強調。左右に情報を分割し、中央に画像を配置。余白を十分に取り、読みやすさを確保。"
+      }
+    },
+    {
+      "slide_number": 14,
+      "slide_type": "content",
+      "topic": "自社ブランドのモバイルアプリの特徴と利点の紹介",
+      "content": {
+        "title": "すぐに使える自社ブランディングされたモバイルアプリ",
+        "subtitle": "",
+        "body_text": [
+          "従業員が「わかる」「つかう」アプリ",
+          "信頼と容易なアクセス",
+          "貴社用にブランド化",
+          "パブリックアプリストアでの配布",
+          "簡易認証",
+          "サービスとエンゲージメントが導入率の向上を促進",
+          "パーソナルで関連性あるエクスペリエンス"
+        ],
+        "image_description": "モバイルアプリのスクリーンショット3枚（アプリストア画面、HR管理画面、ニュース画面）とApp StoreおよびGoogle Playのダウンロードバッジ"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1240",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#F79448",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold（タイトル）、regular（本文）",
+          "characteristics": "太字の日本語フォントで見出しを強調し、本文は読みやすい標準的なウェイト"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "App Storeバッジ",
+          "Google Playバッジ",
+          "モバイルアプリのUIスクリーンショット3点",
+          "吹き出し型の新着メッセージ通知",
+          "矢印アイコン（スライド切替用）"
+        ],
+        "design_notes": "背景は濃紺の単色で統一。タイトルの一部をオレンジ色で強調。本文は左寄せで整列し、青の縦線でセクションを区切る。画像は右側に縦に3つ配置し、余白を十分に確保。全体的にシンプルで見やすい構成。"
+      }
+    },
+    {
+      "slide_number": 15,
+      "slide_type": "content",
+      "topic": "明確な目的を持つことで市場をリードする最新のイントラネットの重要性と成功要因",
+      "content": {
+        "title": "明確な目的持って市場をリードする最新のイントラネット",
+        "subtitle": "",
+        "body_text": [
+          "イントラネット成功の鍵は「明確な目的」にあります。従来のイントラネットは目的が多すぎて失敗してきました。Staffbaseはシンプルに「従業員向けサービス」「情報共有」「アプリへのアクセス」に焦点を当てています。",
+          "“既存のイントラネットの殆どは「目的」が多すぎる事により問題が生じています。目的を明確に定義し、従業員の視点から考える必要があるのです”",
+          "コミュニケーション",
+          "従業員向けサービス",
+          "アプリケーションとリソースへのアクセス"
+        ],
+        "image_description": "Gartnerのロゴと引用文、スマートフォン画面のQ1 shareholder update記事、イントラネットのウェブ画面のスクリーンショットが配置されている"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B0D3A",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#E89B4A",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold（タイトル）、regular（本文）",
+          "characteristics": "太字の日本語ゴシック体で見出しを強調し、本文は読みやすい標準的なウェイト"
+        },
+        "has_logo": true,
+        "logo_position": "top_left",
+        "visual_elements": [
+          "Gartnerロゴ",
+          "スマートフォン画面のスクリーンショット",
+          "イントラネットウェブ画面のスクリーンショット",
+          "箇条書きの縦線アクセント"
+        ],
+        "design_notes": "背景は濃紺の単色で統一。タイトルの一部文字をオレンジ系のアクセントカラーで強調。テキストは白で高いコントラスト。画像は左下と右下に分割配置し、テキストは左上から右上にかけて配置。余白を十分に取り、視認性を確保。"
+      }
+    },
+    {
+      "slide_number": 16,
+      "slide_type": "comparison",
+      "topic": "Staffbaseがメールの効果的な活用を可能にし、企業のメールコミュニケーションの現状と課題を示す",
+      "content": {
+        "title": "Staffbaseはメールを上手く使う事を可能にします",
+        "subtitle": "",
+        "body_text": [
+          "管理しやすい配布リスト → きめ細かなオーディエンスセグメンテーション",
+          "容易なデザインと作成 → 読みやすく認識しやすいメール",
+          "詳細な分析 → 送信されるたびによりスマートに",
+          "97% 社内コミュニケーションにメールを使用している企業の割合",
+          "34% 実際に読まれているメールの割合"
+        ],
+        "image_description": "メール作成画面のスクリーンショット。左にブロックレイアウトや要素の選択パネル、中央にメール本文と画像、右にブロック設定パネルが表示されている。"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#F0F0F0",
+        "primary_color": "#0B1A4D",
+        "accent_color": "#F18F43",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で視認性が高く、見出しは大きく本文は中程度のサイズで読みやすい"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "矢印アイコン",
+          "パーセンテージ数値",
+          "VSの円形アイコン",
+          "メール編集画面のUI要素",
+          "色付きの縦線（青）"
+        ],
+        "design_notes": "左側のテキストは青い縦線で区切りを強調。タイトルの一部にアクセントカラーを使用し視線誘導。右側の数値は大きく太字で強調。背景は淡いグレーで全体のコントラストを調整。余白を広く取り、情報の区分けが明確。"
+      }
+    },
+    {
+      "slide_number": 17,
+      "slide_type": "content",
+      "topic": "Staffbaseがデスクワーカーと現場のギャップを埋める方法について説明している",
+      "content": {
+        "title": "Staffbaseはデスクワーカーと現場とのギャップを埋める事が出来ます",
+        "subtitle": "",
+        "body_text": [
+          "2つのシステムが連携することで、3つの方法で動作します",
+          "1 すべてのコンテンツが1か所から作成、ターゲティング、送信されます",
+          "2 コメントや対話は、複数のチャンネルに表示されます",
+          "3 単一のソースから結果の測定が行われます"
+        ],
+        "image_description": "SharepointとTeamsの統合画面のスクリーンショットと、スタッフのプロフィールカードの写真"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1446",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#D87E2E",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で視認性の高いゴシック系フォント。タイトルは特に強調されている。本文はやや細めで読みやすい。"
+        },
+        "has_logo": true,
+        "logo_position": "top_right",
+        "visual_elements": [
+          "Microsoft Partnerロゴ",
+          "番号付きリスト",
+          "SharepointとTeamsの画面キャプチャ",
+          "人物写真付きプロフィールカード"
+        ],
+        "design_notes": "タイトルの一部テキストはオレンジ色で強調。左側テキストは白背景の角丸ボックス内に配置し、右側に画像を配置。全体的に余白を十分に取り、読みやすさを確保。背景は濃紺でコントラストを強調。"
+      }
+    },
+    {
+      "slide_number": 18,
+      "slide_type": "content",
+      "topic": "Staffbase Companionによるコミュニケーション向け信頼できるAIの活用ケースと特徴",
+      "content": {
+        "title": "Staffbase Companion: コミュニケーションのために構築された信頼できるAI",
+        "subtitle": "",
+        "body_text": [
+          "AIが効力を発揮するケース",
+          "AIのユースケースが厳選されているとき",
+          "人によって管理されているとき",
+          "AIがコミュニケーションの専門知識と結びつくとき",
+          "エンドユーザーと管理者の両社にメリットもたらすとき",
+          "“Companionは、私たちが信頼し愛用している製品に統合され、コミュニケーターに最適化した形で構築されています”",
+          "-マイケル・ヴェルナー MAN社 チャネル管理チームリーダー",
+          "エンタープライズ対応のAIが保証するもの",
+          "コンプライアンス",
+          "データセキュリティ",
+          "パフォーマンスとスケーラビリティ"
+        ],
+        "image_description": "Search機能のチャットUI、Editorのドロップダウンメニュー、文章改善のインターフェースのスクリーンショットとMicrosoft Azureロゴ"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1240",
+        "primary_color": "#E38B3F",
+        "accent_color": "#5A8FD8",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字の見出しと通常の本文が混在し、読みやすいゴシック系フォント"
+        },
+        "has_logo": true,
+        "logo_position": "bottom_left",
+        "visual_elements": [
+          "吹き出しチャットUI",
+          "ドロップダウンメニュー",
+          "文章評価インターフェース",
+          "Microsoft Azureロゴ",
+          "矢印アイコン（Search↓、Editor↓）"
+        ],
+        "design_notes": "背景は濃紺の単色。タイトルの一部にオレンジ色を使用し強調。本文は白色で左寄せ。吹き出しやボックスは白背景で角丸。余白を広く取り、情報を整理して見やすく配置。"
+      }
+    },
+    {
+      "slide_number": 19,
+      "slide_type": "content",
+      "topic": "Staffbaseが2023年のGartner Magic Quadrantでイントラネットパッケージソリューションのリーダーに選出されたことと、その強みの紹介",
+      "content": {
+        "title": "Staffbaseは2023年のGartner® Magic Quadrant™でイントラネットパッケージソリューションのリーダーに選出されました。",
+        "subtitle": "Gartnerが見たStaffbaseの強み",
+        "body_text": [
+          "マルチチャネルコミュニケーションアプローチ",
+          "強力なモバイルアプリの提供",
+          "強固なMicrosoftとの統合",
+          "“Staffbaseのマルチチャネルコミュニケーションの歴史は、単なるイントラネットにとどまらず、より浸透するマルチチャネルアプローチを求める組織にとって、ベストソリューションであることが証明されています”",
+          "4.6 ★★★★★",
+          "顧客レビュー評価",
+          "Gartner Peer Insights"
+        ],
+        "image_description": "Gartner Magic Quadrantのリーダーを示す図。四分割された背景に「Ta-Da!」「We're a LEADER」と書かれている。"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1446",
+        "primary_color": "#F7941D",
+        "accent_color": "#D87CEB",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、見出しは大きく強調。本文はやや細めで整然と配置。"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "四分割のカラーブロック背景",
+          "リーダーを示す吹き出し形状の図",
+          "星評価アイコン",
+          "オレンジ色の引用テキストボックス"
+        ],
+        "design_notes": "左側は濃紺背景に白文字で情報を整理。右側はオレンジの引用ボックスとグラデーション背景の図を配置し視線誘導。角丸の引用ボックスがアクセント。余白を十分に取り、情報の区分けが明確。"
+      }
+    },
+    {
+      "slide_number": 20,
+      "slide_type": "content",
+      "topic": "2024年のClearBox Choice AwardをStaffbaseが受賞し、その評価ポイントと製品の特徴を紹介",
+      "content": {
+        "title": "2024 ClearBox Choice Award",
+        "subtitle": "Staffbaseが受賞",
+        "body_text": [
+          "最も権威ある市場レポートにおいて、優れた評価を受けたトップベンダー",
+          "UXとデザイン性",
+          "パブリッシングとコミュニケーション管理",
+          "コミュニティとエンゲージメント",
+          "管理者エクスペリエンス",
+          "モバイルとフロントラインのサポート",
+          "“Staffbaseは、デスクトップとモバイルの両方で優れたUXと充実した多機能コミュニケーションツールを提供しています。これは、複数のチャネルを活用して従業員にアプローチしたい中〜大規模企業にとって、強力なツールとなります”"
+        ],
+        "image_description": "右上に青背景のClearBox Choice 2024のロゴバッジ、右下にClearBox Consultingのロゴ"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1446",
+        "primary_color": "#F7941D",
+        "accent_color": "#00A4FF",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "タイトルは太字で大きく、本文は読みやすい標準的な太さのサンセリフ体"
+        },
+        "has_logo": true,
+        "logo_position": "bottom_right",
+        "visual_elements": [
+          "ClearBox Choice 2024ロゴバッジ",
+          "ClearBox Consultingロゴ",
+          "縦のライン（アクセントカラーの青）による箇条書きの強調"
+        ],
+        "design_notes": "右側の画像部分は角丸の四角形で区切られ、背景色が青とオレンジの2色に分かれている。左側は濃紺背景にオレンジと白のテキスト。箇条書きの各項目は青い縦線で強調。余白は十分に取り、読みやすさを確保。"
+      }
+    },
+    {
+      "slide_number": 21,
+      "slide_type": "list",
+      "topic": "プロジェクトに関するよくある質問トップ5の紹介",
+      "content": {
+        "title": "これらのプロジェクトのよくある質問トップ5💡",
+        "subtitle": "",
+        "body_text": [
+          "プロジェクトを始めるにはどうすればいいですか？",
+          "このプロジェクトを成功させるには何が必要ですか？",
+          "弊社の人事プログラムとプロセスは、プロジェクトにどう組み込まれますか？",
+          "ITチームに承認されるでしょうか？",
+          "弊社はMicrosoft製品を使用していますが、Staffbaseとの連携は可能でしょうか？"
+        ],
+        "image_description": "右側に手を挙げて話している女性の写真。背景に別の人物がぼんやり写っている。"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#FFFFFF",
+        "primary_color": "#0A0A4A",
+        "accent_color": "#1A73E8",
+        "text_color": "#0A0A4A",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold（タイトル）、regular（本文）",
+          "characteristics": "タイトルは太字で大きく、本文は読みやすい標準的なウェイト。日本語フォントで視認性が高い。"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "電球のアイコン（タイトルの最後に配置）",
+          "角が丸い白背景のテキストボックス"
+        ],
+        "design_notes": "左側に白背景の角丸ボックスを配置し、テキストを整然と表示。右側に写真を配置し視線を誘導。タイトルは太字で強調し、質問リストは番号付きでアクセントカラーの数字を使用。余白を十分に取り、読みやすさを確保。"
+      }
+    },
+    {
+      "slide_number": 22,
+      "slide_type": "content",
+      "topic": "優れたコミュニケーションを目指すための段階的アプローチとサービス紹介",
+      "content": {
+        "title": "優れたコミュニケーションを目指す旅に、今すぐ出掛けましょう",
+        "subtitle": "",
+        "body_text": [
+          "まずはシンプルなチャネルから始めます",
+          "専用のコミュニケーションチャネルの構築",
+          "コンテンツとチャネルのパフォーマンスを計測",
+          "リーチを増やすために、タッチポイントを増やしていきます",
+          "従業員がアクセスしやすい場所にアプローチしてリーチを広げる",
+          "すべてのチャネルで計測を行う",
+          "マルチチャネルコミュニケーションクラウド",
+          "すべてのコミュニケーションを1か所から効率的に管理",
+          "コミュニケーションだけでなく、効果の計測分析を行う",
+          "“Staffbaseは優れた多機能で現代的なアプローチにより「コミュニケーションプラットフォーム」「イントラネット」「従業員用アプリソリューション」これらすべての機能を兼ね備えたサービスです。”"
+        ],
+        "image_description": "ClearBox Consultingのロゴと、冊子の表紙に写る人物の写真"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0A1443",
+        "primary_color": "#0099FF",
+        "accent_color": "#00BFFF",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "見出しは太字で青と紺の2色使い、本文は白色で読みやすく配置"
+        },
+        "has_logo": true,
+        "logo_position": "right_aligned",
+        "visual_elements": [
+          "水平線のアクセント（青色）",
+          "ClearBox Consultingのロゴ",
+          "冊子の表紙写真"
+        ],
+        "design_notes": "左側に3つの段落を縦に並べ、右側に引用文とロゴ・写真を縦に配置。背景は濃紺で、見出しの一部を青色にして強調。余白を広く取り、情報の区切りを明確にしている。"
+      }
+    },
+    {
+      "slide_number": 23,
+      "slide_type": "content",
+      "topic": "業界で最も手厚い顧客アプローチの具体的な内容と実績を紹介",
+      "content": {
+        "title": "業界で最も手厚い顧客アプローチ",
+        "subtitle": "",
+        "body_text": [
+          "オンボーディングと成長 → サポート → コミュニティ",
+          "サクセスチーム",
+          "定期的なタッチポイント",
+          "2,000以上の顧客との実績",
+          "複数のタイムゾーンをカバーするグローバルチーム",
+          "98% サポートの顧客満足度",
+          "4.6 「Gartner Peer Insights」と「G2」での顧客評価",
+          "<2 hour median response time",
+          "業界最大のコミュニティ",
+          "「Staffbase Campus」はeラーニング用のプラットフォームです",
+          "「VOICES」は最大級のグローバルな内部コミュニケーションカンファレンスです",
+          "地域イベントやバーチャルイベント、ウェビナーなど",
+          "“Staffbaseのエクスペリエンスは唯一無二です！”",
+          "Gartner Peer Insightsのレビュー"
+        ],
+        "image_description": "オフィスでの会議や作業風景の写真3枚と、多数の人が集まるイベントの写真1枚"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0A1243",
+        "primary_color": "#0A1243",
+        "accent_color": "#F7941D",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、見出しは大きく強調されている"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "星5つの評価アイコン",
+          "オレンジ色の四角形背景の引用エリア",
+          "区切り線（青色の縦線）",
+          "写真4枚"
+        ],
+        "design_notes": "左側は濃紺背景に白文字で情報を整理し、右上にオレンジ背景の引用エリアを配置。写真はスライド下部に横並びで配置し、情報の区切りに青い縦線を使用。余白を十分に取り、情報の階層が明確。"
+      }
+    },
+    {
+      "slide_number": 24,
+      "slide_type": "content",
+      "topic": "コミュニケーションと人事の連携による従業員エクスペリエンスの最大化",
+      "content": {
+        "title": "最高の従業員エクスペリエンスを創造する",
+        "subtitle": "",
+        "body_text": [
+          "企業のコミュニケーションと文化",
+          "企業の使命と価値観",
+          "コミュニティ",
+          "社内報",
+          "情報とサービスへのアクセス",
+          "企業のポリシー",
+          "人事セルフサービス",
+          "新入社員教育"
+        ],
+        "image_description": "運転席に座る作業員の写真と、パソコンを使う若い男性の写真が縦に並んでいる"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1446",
+        "primary_color": "#0B1446",
+        "accent_color": "#F18F01",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすいゴシック系フォント、見出しは特に強調されている"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "握手の絵文字",
+          "青い縦線の区切り線",
+          "写真2枚（作業員とオフィスワーカー）"
+        ],
+        "design_notes": "上部に濃紺の背景帯があり、タイトルテキストは白とオレンジの強調色で構成。本文は白背景に2カラムレイアウトで青の縦線で区切られている。写真は右側に縦に2枚配置されている。余白は十分に取られており、視認性が高い。"
+      }
+    },
+    {
+      "slide_number": 25,
+      "slide_type": "content",
+      "topic": "企業向けのセキュアなコミュニケーションによる価値創出の方法と特徴",
+      "content": {
+        "title": "企業向けのセキュアなコミュニケーションで価値を生み出す",
+        "subtitle": "",
+        "body_text": [
+          "DXを推進する",
+          "迅速な価値の実現",
+          "安全性の高いソリューション",
+          "デジタルワークプレイス戦略に適合する集中型のコミュニケーションソリューション",
+          "ビジネスユーザーが管理できるイントラネットと、業界をリードするサポートを提供するパートナー",
+          "厳格なグローバル規制に準拠し認定された強固なインフラストラクチャ"
+        ],
+        "image_description": "SAP、Oracle、Google Driveなどのロゴアイコン、Gartner Peer Insightsの評価スコア4.6、GDPR、TUV、CCPA、HIPAAの認証バッジ、Gartnerのリーダーシップバッジ"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B1240",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#F18F3C",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold",
+          "characteristics": "太字で読みやすく、強調部分はオレンジ色でアクセントを付けている"
+        },
+        "has_logo": true,
+        "logo_position": "bottom_right",
+        "visual_elements": [
+          "企業ロゴアイコン群",
+          "評価スコアとレビュー情報",
+          "認証バッジ群",
+          "リーダーシップバッジ",
+          "区切り線（青色の縦線）"
+        ],
+        "design_notes": "タイトルは背景色の濃紺に白文字で強調し、キーワードはオレンジ色でアクセント。本文は3カラム形式で区切り線を用いて情報を整理。ロゴや認証バッジは下部に配置し視覚的な信頼感を演出。余白を十分に取り、情報の読みやすさを確保。"
+      }
+    },
+    {
+      "slide_number": 26,
+      "slide_type": "comparison",
+      "topic": "StaffbaseとMicrosoftのコミュニケーションツールの連携についての説明",
+      "content": {
+        "title": "StaffbaseとMicrosoft コミュニケーションツールの連携",
+        "subtitle": "",
+        "body_text": [
+          "Viva",
+          "Teams",
+          "Microsoft 365",
+          "Azure + Power Platform",
+          "Hosting on Microsoft Azure",
+          "SSO with Entra ID",
+          "Integration with Power Platform",
+          "Why Staffbase",
+          "マルチチャネルで包括的なエクスペリエンスを提供するシステム",
+          "コミュニケーションとエンゲージメントに特化したシステム",
+          "デスクワーカーと現場とのギャップを埋める仕組み"
+        ],
+        "image_description": "左側にオレンジ色の3段ピラミッド（Viva、Teams、Microsoft 365）、中央に青色の三角形にStaffbaseのロゴ、右側にMicrosoft Partnerのロゴと説明テキストのボックス"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0A1142",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#F28C28",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold（タイトル）、regular（本文）",
+          "characteristics": "モダンで読みやすいゴシック系フォント、タイトルは太字で強調"
+        },
+        "has_logo": true,
+        "logo_position": "top_right",
+        "visual_elements": [
+          "オレンジ色の3段ピラミッド図",
+          "青色の三角形図形",
+          "Staffbaseロゴ（白色）",
+          "Microsoft Partnerロゴ",
+          "チェックマークアイコン（緑色）",
+          "矢印アイコン（青色）"
+        ],
+        "design_notes": "背景は濃紺で統一し、オレンジと青のコントラストを強調。テキストは白で視認性高い。右側の説明ボックスは白背景で角丸。余白を広く取り、要素間のバランスを良くしている。"
+      }
+    },
+    {
+      "slide_number": 27,
+      "slide_type": "stats",
+      "topic": "従業員コミュニケーションツールの複雑さが問題となっている現状",
+      "content": {
+        "title": "従業員コミュニケーションツールの多くは複雑さが問題になっています",
+        "subtitle": "",
+        "body_text": [
+          "98%",
+          "多くのコミュニケーションチームが課題を抱えています。",
+          "その多くは「複雑すぎる」事から生じています。"
+        ],
+        "image_description": "オレンジ色の複雑に絡み合った線が背景にあり、その上に従業員コミュニケーションツールの名称（Employee Magazine、Newsletter、Employee App、Digital Signage、Email、MS Teams、Manager Cascades、Intranet、SharePoint、Posters）が白いラベルで配置されている。"
+      },
+      "design": {
+        "layout": "two_column",
+        "background_color": "#0B0E3B",
+        "primary_color": "#FFFFFF",
+        "accent_color": "#F2943B",
+        "text_color": "#FFFFFF",
+        "font_style": {
+          "family": "sans-serif",
+          "weight": "bold (タイトル), regular (本文)",
+          "characteristics": "太字の日本語フォントで読みやすく、本文は細めで整ったサンセリフ体"
+        },
+        "has_logo": false,
+        "logo_position": "none",
+        "visual_elements": [
+          "複雑に絡み合ったオレンジ色の線の図",
+          "各コミュニケーションツール名の白背景ラベル"
+        ],
+        "design_notes": "左側にテキストを縦に揃え、右側に複雑な線の図を配置。アクセントカラーのオレンジ線が視線を誘導し、重要なキーワード「複雑さ」をオレンジ色で強調。余白を十分に取り、情報の見やすさを確保。"
+      }
+    }
+  ]
+}

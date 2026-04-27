@@ -1,0 +1,16 @@
+{
+  "category": "product_reference",
+  "use_case": "製品仕様の最新参照先をすぐ確認したいとき",
+  "how_to_use": [
+    "同期スクリプトを実行",
+    "URL一覧を参照",
+    "根拠として利用"
+  ],
+  "input": [
+    "Help Center記事一覧"
+  ],
+  "output": [
+    "staffbase_urls.md"
+  ],
+  "example": "例: 機能可否の問い合わせ時に参照URLを即提示。"
+}

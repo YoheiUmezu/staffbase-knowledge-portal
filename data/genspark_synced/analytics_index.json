@@ -1,0 +1,53 @@
+{
+  "updated_at": "2026-04-26T18:14:30.954819",
+  "scenarios": [
+    {
+      "name": "campaign_boost",
+      "label": "全社キャンペーン",
+      "ready": true,
+      "before": "latest_campaign_boost_before.json",
+      "after": "latest_campaign_boost_after.json",
+      "report": "latest_campaign_boost_report.md"
+    },
+    {
+      "name": "policy_change",
+      "label": "制度変更周知",
+      "ready": true,
+      "before": "latest_policy_change_before.json",
+      "after": "latest_policy_change_after.json",
+      "report": "latest_policy_change_report.md"
+    },
+    {
+      "name": "factory_busy",
+      "label": "繁忙期",
+      "ready": true,
+      "before": "latest_factory_busy_before.json",
+      "after": "latest_factory_busy_after.json",
+      "report": "latest_factory_busy_report.md"
+    },
+    {
+      "name": "mobile_push",
+      "label": "モバイル強化",
+      "ready": true,
+      "before": "latest_mobile_push_before.json",
+      "after": "latest_mobile_push_after.json",
+      "report": "latest_mobile_push_report.md"
+    },
+    {
+      "name": "qa_improvement",
+      "label": "FAQ改善",
+      "ready": true,
+      "before": "latest_qa_improvement_before.json",
+      "after": "latest_qa_improvement_after.json",
+      "report": "latest_qa_improvement_report.md"
+    },
+    {
+      "name": "new_joiners",
+      "label": "新入社員期",
+      "ready": true,
+      "before": "latest_new_joiners_before.json",
+      "after": "latest_new_joiners_after.json",
+      "report": "latest_new_joiners_report.md"
+    }
+  ]
+}
