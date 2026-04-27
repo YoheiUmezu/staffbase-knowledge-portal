@@ -35,27 +35,6 @@
   </header>
   <main>
     <section class="panel">
-      <span class="chip" id="categoryChip">category</span>
-      <h2>何に使うか</h2>
-      <p id="useCase"></p>
-    </section>
-    <section class="panel">
-      <h2>使い方</h2>
-      <ul id="howToUse"></ul>
-    </section>
-    <section class="panel">
-      <h2>必要な入力</h2>
-      <ul id="inputs"></ul>
-    </section>
-    <section class="panel">
-      <h2>得られる成果物</h2>
-      <ul id="outputs"></ul>
-    </section>
-    <section class="panel">
-      <h2>具体例</h2>
-      <div id="example" class="example"></div>
-    </section>
-    <section class="panel">
       <h2>このリポジトリが何をしているか（非エンジニア向け）</h2>
       <p id="plainSummary"></p>
     </section>
@@ -125,22 +104,6 @@
         .replaceAll('>', '&gt;');
     }
 
-    function renderList(elementId, values) {
-      const root = document.getElementById(elementId);
-      root.innerHTML = '';
-      for (const value of values || []) {
-        const li = document.createElement('li');
-        li.innerHTML = escapeHtml(value);
-        root.appendChild(li);
-      }
-    }
-
-    function resolveDataPath(rawPath) {
-      if (!rawPath) return null;
-      if (rawPath.startsWith('http://') || rawPath.startsWith('https://')) return rawPath;
-      return rawPath;
-    }
-
     function renderFlow(flow) {
       const root = document.getElementById('geminiFlow');
       root.innerHTML = '';
@@ -155,22 +118,7 @@
     async function loadUseCase() {
       const params = new URLSearchParams(window.location.search);
       const category = params.get('category') || 'unknown';
-      const dataFile = resolveDataPath(params.get('data') || `data/${category}.json`);
-
-      const res = await fetch(dataFile);
-      if (!res.ok) {
-        throw new Error(`データの読み込みに失敗しました: ${res.status}`);
-      }
-      const json = await res.json();
-
-      document.getElementById('title').textContent = `${escapeHtml(category)} の実際のユースケース`;
-      document.getElementById('categoryChip').textContent = json.category || category;
-      document.getElementById('useCase').textContent = json.use_case || '準備中';
-      renderList('howToUse', json.how_to_use);
-      renderList('inputs', json.input);
-      renderList('outputs', json.output);
-      document.getElementById('example').textContent = json.example || '準備中';
-
+      document.getElementById('title').textContent = `${escapeHtml(category)} のGemini使用ガイド`;
       const guide = geminiGuideMap[category];
       document.getElementById('plainSummary').textContent = guide ? guide.summary : 'このカテゴリの説明は準備中です。';
       renderFlow(guide ? guide.flow : []);
