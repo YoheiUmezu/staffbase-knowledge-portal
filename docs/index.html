@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staffbase Knowledge Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f7fb; color: #1f2a44; }
+    header { background: #0b1446; color: #fff; padding: 24px; }
+    main { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+    .card h3 { margin: 0 0 8px; }
+    .card p { margin: 0 0 8px; font-size: 14px; }
+    .card a { color: #0b1446; text-decoration: none; }
+    .meta { font-size: 12px; color: #506080; }
+    .actions { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    button { border: 1px solid #d2dbef; background: #fff; color: #1f2a44; border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+    button.primary { background: #0b1446; color: #fff; border-color: #0b1446; }
+    #detailView { display: none; }
+    .panel { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+    #docContent h1, #docContent h2, #docContent h3 { margin: 16px 0 8px; }
+    #docContent p, #docContent li { line-height: 1.6; }
+    #docContent ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>業務ナレッジポータル</h1>
+    <p>何に使うかから選べる、非エンジニア向けガイド</p>
+  </header>
+  <main>
+    <section id="listView">
+      <h2>業務カテゴリ一覧</h2>
+      <div id="categories" class="grid"></div>
+    </section>
+    <section id="detailView">
+      <div class="actions">
+        <button id="backButton">カテゴリ一覧に戻る</button>
+      </div>
+      <article class="panel">
+        <h2 id="detailTitle"></h2>
+        <p id="detailUseCase"></p>
+        <div class="actions">
+          <button id="openDataButton" class="primary">データJSONを開く</button>
+        </div>
+        <div id="docContent"></div>
+      </article>
+    </section>
+  </main>
+  <script>
+    let portalIndex = null;
+
+    function escapeHtml(text) {
+      return text
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+    }
+
+    function markdownToHtml(markdown) {
+      const lines = markdown.split('\n');
+      let html = '';
+      let inList = false;
+
+      for (const rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          continue;
+        }
+        if (line.startsWith('### ')) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h3>${escapeHtml(line.slice(4))}</h3>`;
+          continue;
+        }
+        if (line.startsWith('## ')) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h2>${escapeHtml(line.slice(3))}</h2>`;
+          continue;
+        }
+        if (line.startsWith('# ')) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h1>${escapeHtml(line.slice(2))}</h1>`;
+          continue;
+        }
+        if (line.startsWith('- ')) {
+          if (!inList) {
+            html += '<ul>';
+            inList = true;
+          }
+          html += `<li>${escapeHtml(line.slice(2))}</li>`;
+          continue;
+        }
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+        html += `<p>${escapeHtml(line)}</p>`;
+      }
+
+      if (inList) {
+        html += '</ul>';
+      }
+      return html;
+    }
+
+    function showList() {
+      document.getElementById('listView').style.display = 'block';
+      document.getElementById('detailView').style.display = 'none';
+    }
+
+    function showDetail() {
+      document.getElementById('listView').style.display = 'none';
+      document.getElementById('detailView').style.display = 'block';
+    }
+
+    async function renderList(data) {
+      const root = document.getElementById('categories');
+      root.innerHTML = '';
+      for (const c of data.categories) {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `<h3><a href="#category=${c.id}">${c.title}</a></h3><p><strong>何に使うか:</strong> ${c.use_case || '準備中'}</p><p class="meta">カテゴリID: ${c.id}</p>`;
+        root.appendChild(card);
+      }
+    }
+
+    async function renderDetail(categoryId) {
+      const category = portalIndex.categories.find((c) => c.id === categoryId);
+      if (!category) {
+        showList();
+        return;
+      }
+
+      document.getElementById('detailTitle').textContent = category.title;
+      document.getElementById('detailUseCase').textContent = `何に使うか: ${category.use_case || '準備中'}`;
+      document.getElementById('openDataButton').onclick = () => {
+        window.open(`../${category.data}`, '_blank');
+      };
+
+      const docRes = await fetch(`../${category.doc}`);
+      const markdown = await docRes.text();
+      document.getElementById('docContent').innerHTML = markdownToHtml(markdown);
+      showDetail();
+    }
+
+    async function route() {
+      const hash = window.location.hash;
+      if (!hash.startsWith('#category=')) {
+        showList();
+        return;
+      }
+      const categoryId = hash.replace('#category=', '').trim();
+      await renderDetail(categoryId);
+    }
+
+    async function init() {
+      const res = await fetch('../data/index.json');
+      portalIndex = await res.json();
+      await renderList(portalIndex);
+      document.getElementById('backButton').onclick = () => {
+        window.location.hash = '';
+      };
+      window.addEventListener('hashchange', route);
+      await route();
+    }
+    init();
+  </script>
+</body>
+</html>
