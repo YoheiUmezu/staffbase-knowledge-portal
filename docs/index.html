@@ -22,6 +22,14 @@
     #docContent h1, #docContent h2, #docContent h3 { margin: 16px 0 8px; }
     #docContent p, #docContent li { line-height: 1.6; }
     #docContent ul { padding-left: 20px; }
+    .guide { margin-top: 14px; padding: 16px; border: 1px solid #dce5ff; border-radius: 10px; background: #f8faff; }
+    .guide h3 { margin: 0 0 8px; }
+    .guide ol { margin: 0; padding-left: 20px; }
+    .guide li { margin: 8px 0; line-height: 1.5; }
+    .repo-links { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .repo-links a { display: inline-block; border: 1px solid #ccd8fb; background: #fff; color: #1f2a44; border-radius: 8px; padding: 8px 12px; text-decoration: none; font-size: 14px; }
+    .repo-links a.primary { background: #0b1446; border-color: #0b1446; color: #fff; }
+    .repo-note { margin-top: 8px; font-size: 12px; color: #506080; }
   </style>
 </head>
 <body>
@@ -45,11 +53,47 @@
           <button id="openDataButton" class="primary">実際のユースケース</button>
         </div>
         <div id="docContent"></div>
+        <section class="guide">
+          <h3>はじめて使う方向けガイダンス</h3>
+          <ol id="guideSteps"></ol>
+          <div class="repo-links">
+            <a id="repoOpenLink" class="primary" href="#" target="_blank" rel="noopener noreferrer">GitHubで開く</a>
+            <a id="repoDownloadLink" href="#" target="_blank" rel="noopener noreferrer">ZIPでダウンロード</a>
+          </div>
+          <p id="repoNote" class="repo-note"></p>
+        </section>
       </article>
     </section>
   </main>
   <script>
     let portalIndex = null;
+    const repoGuideMap = {
+      rfp: {
+        name: 'staffbase-rfp',
+        url: 'https://github.com/YoheiUmezu/staffbase-rfp',
+        steps: ['READMEを読んで、回答の全体方針を把握する', '既存ファイルや入力フォーマットを確認する', '自社のRFP業務に合わせてテンプレートを流用する']
+      },
+      note: {
+        name: 'note-article',
+        url: 'https://github.com/YoheiUmezu/note-article',
+        steps: ['READMEの実行手順どおりに一度ローカル実行する', '生成されたMarkdownの見出しと本文を確認する', '必要な表現だけを編集して公開フローに載せる']
+      },
+      slides: {
+        name: 'slide-template',
+        url: 'https://github.com/YoheiUmezu/slide-template',
+        steps: ['READMEでデザインルールを先に確認する', 'テンプレートJSONの項目を差し替えて試作する', '完成スライドを社内レビューし再利用テンプレート化する']
+      },
+      analytics: {
+        name: 'analytics_json',
+        url: 'https://github.com/YoheiUmezu/analytics_json',
+        steps: ['READMEのシナリオ一覧から対象業務を選ぶ', 'before/afterデータとレポートをセットで確認する', '会議資料にはlatestファイルを優先して使う']
+      },
+      product_reference: {
+        name: 'staffbase-product-reference',
+        url: 'https://github.com/YoheiUmezu/staffbase-product-reference',
+        steps: ['READMEに沿ってURL一覧の更新方法を把握する', '問い合わせ時は一覧から該当ヘルプ記事を選ぶ', '回答文には参照した記事URLを必ず添える']
+      }
+    };
 
     function escapeHtml(text) {
       return text
@@ -156,6 +200,27 @@
       const docRes = await fetch(docPath);
       const markdown = await docRes.text();
       document.getElementById('docContent').innerHTML = markdownToHtml(markdown);
+
+      const guide = repoGuideMap[category.id];
+      const guideSteps = document.getElementById('guideSteps');
+      guideSteps.innerHTML = '';
+      if (guide) {
+        for (const step of guide.steps) {
+          const li = document.createElement('li');
+          li.textContent = step;
+          guideSteps.appendChild(li);
+        }
+        document.getElementById('repoOpenLink').href = guide.url;
+        document.getElementById('repoDownloadLink').href = `${guide.url}/archive/refs/heads/main.zip`;
+        document.getElementById('repoNote').textContent = `${guide.name} をダウンロードして、そのまま業務テンプレートとして使えます。`;
+      } else {
+        const li = document.createElement('li');
+        li.textContent = '関連リポジトリ情報は準備中です。';
+        guideSteps.appendChild(li);
+        document.getElementById('repoOpenLink').href = '#';
+        document.getElementById('repoDownloadLink').href = '#';
+        document.getElementById('repoNote').textContent = '';
+      }
       showDetail();
     }
 
