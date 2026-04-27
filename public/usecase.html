@@ -37,7 +37,10 @@
 </head>
 <body>
   <header>
-    <div class="nav"><a href="index.html">← カテゴリ一覧へ戻る</a></div>
+    <div class="nav">
+      <a href="index.html">← カテゴリ一覧へ戻る</a>
+      <a id="backToCategoryLink" href="index.html" style="margin-left:12px;">← このカテゴリへ戻る</a>
+    </div>
     <div class="hero">
       <h1 id="title">実際のユースケース</h1>
       <p id="subtitle">業務での使い方を分かりやすく整理しています。</p>
@@ -188,6 +191,7 @@
     function setupNoteRoleTabs() {
       const panel = document.getElementById('noteRolePanel');
       const tabsRoot = document.getElementById('noteRoleTabs');
+      const params = new URLSearchParams(window.location.search);
       const roles = [
         { id: 'se', label: 'セールスエンジニア' },
         { id: 'marketer', label: 'マーケター' },
@@ -201,6 +205,9 @@
         tabsRoot.querySelectorAll('.tab-btn').forEach((btn) => {
           btn.classList.toggle('active', btn.dataset.role === roleId);
         });
+        localStorage.setItem('notePromptRole', roleId);
+        params.set('role', roleId);
+        history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
       };
 
       for (const role of roles) {
@@ -214,12 +221,15 @@
       }
 
       panel.style.display = 'block';
-      selectRole('se');
+      const savedRole = params.get('role') || localStorage.getItem('notePromptRole') || 'se';
+      const roleExists = roles.some((role) => role.id === savedRole);
+      selectRole(roleExists ? savedRole : 'se');
     }
 
     async function loadUseCase() {
       const params = new URLSearchParams(window.location.search);
       const category = params.get('category') || 'unknown';
+      document.getElementById('backToCategoryLink').href = `index.html#category=${encodeURIComponent(category)}`;
       const isRfp = category === 'rfp';
       document.getElementById('title').textContent = isRfp ? 'rfp のNotebookLM使用ガイド' : `${escapeHtml(category)} のGemini使用ガイド`;
       document.getElementById('flowHeading').textContent = isRfp ? 'NotebookLMで1から使うフロー' : 'Geminiで1から使うフロー';
