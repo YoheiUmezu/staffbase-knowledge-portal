@@ -40,14 +40,6 @@
     .copy-btn { border: 1px solid #c7d3f5; background: #fff; color: #1f2a44; border-radius: 8px; padding: 7px 12px; font-size: 13px; cursor: pointer; }
     .copy-status { font-size: 12px; color: #d7e0ff; }
     .url-note { margin-top: 12px; border: 2px solid #ffbf47; background: #fff8e6; color: #5a3b00; border-radius: 10px; padding: 12px 14px; font-size: 13px; line-height: 1.6; font-weight: 700; box-shadow: 0 2px 8px rgba(255, 191, 71, 0.25); }
-    .pdf-panel { display: none; }
-    .pdf-header { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
-    .pdf-link { color: #2148a6; text-decoration: none; font-size: 13px; }
-    .pdf-frame-wrap { margin-top: 12px; border: 1px solid #dce5ff; border-radius: 10px; overflow: hidden; background: #fff; }
-    .pdf-frame { width: 100%; height: min(76vh, 900px); border: 0; display: block; }
-    @media (max-width: 768px) {
-      .pdf-frame { height: 62vh; }
-    }
   </style>
 </head>
 <body>
@@ -96,15 +88,6 @@
       </div>
       <div id="geminiPrompt" class="prompt"></div>
       <p id="urlNote" class="url-note">URL（GitHub上のMarkdownファイル）をGeminiに貼って読み込めない場合は、URL先の内容をコピー・アンド・ペーストして入力してください。</p>
-    </section>
-    <section id="pdfPanel" class="panel pdf-panel">
-      <div class="pdf-header">
-        <h2>RFP回答PDFビューア</h2>
-        <a id="pdfOpenLink" class="pdf-link" href="#" target="_blank" rel="noopener noreferrer">新しいタブで開く</a>
-      </div>
-      <div class="pdf-frame-wrap">
-        <iframe id="pdfFrame" class="pdf-frame" title="RFP PDF Viewer"></iframe>
-      </div>
     </section>
   </main>
   <script>
@@ -207,19 +190,6 @@
       document.getElementById('geminiPrompt').textContent = normalizePromptText(text);
     }
 
-    function setupPdfViewer(category) {
-      const panel = document.getElementById('pdfPanel');
-      const defaultPdfPath = 'assets/answered_rfp - 03_機能要件.pdf';
-      if (category !== 'rfp') {
-        panel.style.display = 'none';
-        return;
-      }
-      panel.style.display = 'block';
-      const encodedPath = encodeURI(defaultPdfPath);
-      document.getElementById('pdfOpenLink').href = encodedPath;
-      document.getElementById('pdfFrame').src = encodedPath;
-    }
-
     function buildAnalyticsPrompt(scenarioId) {
       const selected = analyticsScenarioOptions.find((option) => option.id === scenarioId) || analyticsScenarioOptions[0];
       const reportUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/latest_${selected.id}_report.md`;
@@ -302,7 +272,6 @@
       const guide = geminiGuideMap[category];
       document.getElementById('plainSummary').textContent = guide ? guide.summary : 'このカテゴリの説明は準備中です。';
       renderFlow(guide ? guide.flow : []);
-      setupPdfViewer(category);
       document.getElementById('urlNote').style.display = category === 'slides' ? 'none' : 'block';
       document.getElementById('analyticsScenarioPanel').style.display = 'none';
       document.getElementById('noteRolePanel').style.display = 'none';
