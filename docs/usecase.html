@@ -18,6 +18,11 @@
     ul { margin: 0; padding-left: 20px; }
     li { margin: 8px 0; line-height: 1.6; }
     .example { background: #f7f9ff; border: 1px solid #dce5ff; border-radius: 10px; padding: 14px; line-height: 1.7; }
+    .flow { display: grid; gap: 10px; }
+    .step { border: 1px solid #dce5ff; border-radius: 10px; padding: 12px; background: #fcfdff; }
+    .step strong { color: #0b1446; }
+    .prompt { background: #0f173f; color: #eaf0ff; border-radius: 10px; padding: 14px; font-size: 14px; white-space: pre-wrap; line-height: 1.6; }
+    .badge { display: inline-block; font-size: 12px; color: #0b1446; background: #e8efff; padding: 4px 8px; border-radius: 999px; margin-bottom: 8px; }
   </style>
 </head>
 <body>
@@ -50,8 +55,69 @@
       <h2>具体例</h2>
       <div id="example" class="example"></div>
     </section>
+    <section class="panel">
+      <h2>このリポジトリが何をしているか（非エンジニア向け）</h2>
+      <p id="plainSummary"></p>
+    </section>
+    <section class="panel">
+      <h2>Geminiで1から使うフロー</h2>
+      <div class="flow" id="geminiFlow"></div>
+    </section>
+    <section class="panel">
+      <span class="badge">そのままGeminiに貼り付けOK</span>
+      <h2>推奨プロンプト</h2>
+      <div id="geminiPrompt" class="prompt"></div>
+    </section>
   </main>
   <script>
+    const geminiGuideMap = {
+      rfp: {
+        summary: 'RFP回答の根拠確認と回答文の整形を標準化するためのリポジトリです。技術実装よりも、正確な回答運用を支えることが目的です。',
+        flow: [
+          'リポジトリのREADMEをGeminiに貼り、「非エンジニア向けに要約して」と依頼する。',
+          '手元のRFP設問を貼り、「設問の分類（機能/セキュリティ/運用）」をさせる。',
+          'Geminiに「根拠URLつき回答草案」を作成させ、社内レビュー後に提出版へ反映する。'
+        ],
+        prompt: 'あなたは提案支援アシスタントです。以下のRFP設問に対して、断定を避けつつ根拠付きで回答草案を作ってください。\\n\\n出力形式:\\n1) 回答案（です・ます調）\\n2) 前提条件\\n3) 要確認事項\\n4) 参照根拠'
+      },
+      note: {
+        summary: 'ニュース収集から記事下書き作成までを定期化するリポジトリです。コードを書くためではなく、発信業務を続けやすくするために使います。',
+        flow: [
+          'READMEの目的をGeminiに説明させ、「記事担当者向けの使い方」に翻訳させる。',
+          '生成された下書きMarkdownをGeminiへ渡し、読みやすい構成（見出し/要点/結論）に整形する。',
+          '公開先に合わせて文体を調整し、最終稿として出力させる。'
+        ],
+        prompt: '以下の下書きを、非エンジニア向けの読みやすい記事に再構成してください。\\n条件: 専門用語はかみ砕く / 見出し3-5個 / 最後に要点まとめ'
+      },
+      slides: {
+        summary: 'Staffbaseブランドに沿ったスライドを再利用可能なJSONで作るためのリポジトリです。デザインルールを守ることが主眼です。',
+        flow: [
+          'READMEとテンプレートJSONをGeminiへ渡し、「この資料の必須デザインルール」を抽出させる。',
+          '伝えたいトピックを箇条書きで入力し、スライド構成案（表紙/要点/まとめ）を作らせる。',
+          '完成案をレビューし、表現を業務向けに調整する。'
+        ],
+        prompt: '以下のトピックを、添付のスライドルールに準拠して提案資料化してください。\\n出力: スライド番号 / タイトル / 1枚の要点 / 話す内容メモ'
+      },
+      analytics: {
+        summary: '施策のbefore/afterをシナリオで比較し、意思決定用レポートを作るためのリポジトリです。分析結果の読み解きに使います。',
+        flow: [
+          'READMEのシナリオ説明をGeminiに読み込ませ、「どの業務判断に使えるか」を整理させる。',
+          '対象シナリオのbefore/afterデータを渡し、差分要点を3-5点に要約させる。',
+          '会議向けに「示唆・次アクション・注意点」を1ページ分で出力させる。'
+        ],
+        prompt: '次のbefore/afterデータを比較し、意思決定者向けレポートを作成してください。\\n出力: 変化ポイント / 解釈 / 推奨アクション / 追加で見るべき指標'
+      },
+      product_reference: {
+        summary: '製品情報の参照URLを定期更新し、問い合わせ対応の根拠を揃えるためのリポジトリです。最新情報参照の入口として使います。',
+        flow: [
+          'READMEをGeminiに渡し、「問い合わせ担当が見るべきポイント」を3つに要約させる。',
+          '対象機能の質問を入力し、参照すべきURL候補と回答ドラフトを作らせる。',
+          '最後に人が内容を確認して、根拠URL付きで社内外へ回答する。'
+        ],
+        prompt: '以下の問い合わせに回答するため、参照URL候補と回答草案を作ってください。\\n必須: 推測禁止 / 不明点は要確認で明示 / 根拠URLを末尾に記載'
+      }
+    };
+
     function escapeHtml(text) {
       return String(text)
         .replaceAll('&', '&amp;')
@@ -69,10 +135,27 @@
       }
     }
 
+    function resolveDataPath(rawPath) {
+      if (!rawPath) return null;
+      if (rawPath.startsWith('http://') || rawPath.startsWith('https://')) return rawPath;
+      return rawPath;
+    }
+
+    function renderFlow(flow) {
+      const root = document.getElementById('geminiFlow');
+      root.innerHTML = '';
+      (flow || []).forEach((item, index) => {
+        const block = document.createElement('div');
+        block.className = 'step';
+        block.innerHTML = `<strong>Step ${index + 1}</strong><div>${escapeHtml(item)}</div>`;
+        root.appendChild(block);
+      });
+    }
+
     async function loadUseCase() {
       const params = new URLSearchParams(window.location.search);
       const category = params.get('category') || 'unknown';
-      const dataFile = params.get('data') || `data/${category}.json`;
+      const dataFile = resolveDataPath(params.get('data') || `data/${category}.json`);
 
       const res = await fetch(dataFile);
       if (!res.ok) {
@@ -87,6 +170,11 @@
       renderList('inputs', json.input);
       renderList('outputs', json.output);
       document.getElementById('example').textContent = json.example || '準備中';
+
+      const guide = geminiGuideMap[category];
+      document.getElementById('plainSummary').textContent = guide ? guide.summary : 'このカテゴリの説明は準備中です。';
+      renderFlow(guide ? guide.flow : []);
+      document.getElementById('geminiPrompt').textContent = guide ? guide.prompt : '準備中';
     }
 
     loadUseCase().catch((error) => {
