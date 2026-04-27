@@ -23,6 +23,10 @@
     .step strong { color: #0b1446; }
     .prompt { background: #0f173f; color: #eaf0ff; border-radius: 10px; padding: 14px; font-size: 14px; white-space: pre-wrap; line-height: 1.6; }
     .badge { display: inline-block; font-size: 12px; color: #0b1446; background: #e8efff; padding: 4px 8px; border-radius: 999px; margin-bottom: 8px; }
+    .scenario-panel { margin-top: 10px; padding: 12px; background: #f7f9ff; border: 1px solid #dce5ff; border-radius: 10px; }
+    .scenario-panel label { font-size: 13px; font-weight: 700; color: #1f2a44; display: block; margin-bottom: 6px; }
+    .scenario-panel select { width: 100%; max-width: 360px; padding: 8px 10px; border: 1px solid #c7d3f5; border-radius: 8px; background: #fff; }
+    .scenario-note { margin-top: 8px; font-size: 12px; color: #506080; }
   </style>
 </head>
 <body>
@@ -45,10 +49,24 @@
     <section class="panel">
       <span class="badge">そのままGeminiに貼り付けOK</span>
       <h2>推奨プロンプト</h2>
+      <div id="analyticsScenarioPanel" class="scenario-panel" style="display:none;">
+        <label for="analyticsScenarioSelect">分析シナリオを選択</label>
+        <select id="analyticsScenarioSelect"></select>
+        <p class="scenario-note">選択したシナリオに合わせて、Before/AfterのURLが自動で更新されます。</p>
+      </div>
       <div id="geminiPrompt" class="prompt"></div>
     </section>
   </main>
   <script>
+    const analyticsScenarioOptions = [
+      { id: 'qa_improvement', label: 'FAQ改善（qa_improvement）', date: '20260426' },
+      { id: 'campaign_boost', label: '全社キャンペーン（campaign_boost）', date: '20260426' },
+      { id: 'policy_change', label: '制度変更周知（policy_change）', date: '20260426' },
+      { id: 'factory_busy', label: '繁忙期（factory_busy）', date: '20260426' },
+      { id: 'mobile_push', label: 'モバイル強化（mobile_push）', date: '20260426' },
+      { id: 'new_joiners', label: '新入社員期（new_joiners）', date: '20260426' }
+    ];
+
     const geminiGuideMap = {
       rfp: {
         summary: 'RFP回答の根拠確認と回答文の整形を標準化するためのリポジトリです。技術実装よりも、正確な回答運用を支えることが目的です。',
@@ -85,7 +103,7 @@
           '出力はエグゼクティブサマリー→KPI比較→改善クエリ分析→構造的インサイト→次アクション（優先度つき）の順にさせる。',
           '定期運用する場合は、この指示をGem（カスタムGem）として保存し、毎回URLだけ差し替える運用にする。'
         ],
-        prompt: 'あなたはBtoB SaaS企業（特に製造業向け）のコンテンツ戦略担当です。\\n\\n以下のデータをもとに、社内ナレッジ改善の分析レポートを作成してください。\\n\\n# 入力データ\\n- 分析レポート（Markdown）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/report.md\\n\\n- Beforeデータ（JSON）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_20260426_qa_improvement_before.json\\n\\n- Afterデータ（JSON）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_20260426_qa_improvement_after.json\\n\\n# 目的\\n・検索体験（Search Experience）の改善結果を明確にする\\n・どのクエリで改善が起きたかを特定する\\n・今後のナレッジ改善アクションを提示する\\n\\n# 出力要件\\n1. エグゼクティブサマリー（5行以内、改善/未改善を明確化）\\n2. KPI比較（検索数/クリック数/CTR/成功率、改善幅%を必ず記載）\\n3. 改善クエリ分析（改善上位5クエリ、悪化クエリ、Before/After数値、変化理由の仮説）\\n4. 構造的インサイト（コンテンツ不足/検索意図とのズレ/UI導線）\\n5. 次アクション（どの記事をどう改善するか、新規作成記事、優先順位High/Medium/Low）\\n6. トーン: 日本語・ビジネス向け・具体化重視\\n\\n# 制約\\n- JSONデータを必ず根拠として使う\\n- 推測だけの記述は禁止\\n- 箇条書きを多用し、読みやすくする\\n\\nこの要件に厳密に従って出力してください。'
+        promptTemplate: 'あなたはBtoB SaaS企業（特に製造業向け）のコンテンツ戦略担当です。\\n\\n以下のデータをもとに、社内ナレッジ改善の分析レポートを作成してください。\\n\\n# 入力データ\\n- 分析レポート（Markdown）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/report.md\\n\\n- Beforeデータ（JSON）:\\n{{beforeUrl}}\\n\\n- Afterデータ（JSON）:\\n{{afterUrl}}\\n\\n# 目的\\n・検索体験（Search Experience）の改善結果を明確にする\\n・どのクエリで改善が起きたかを特定する\\n・今後のナレッジ改善アクションを提示する\\n\\n# 出力要件\\n1. エグゼクティブサマリー（5行以内、改善/未改善を明確化）\\n2. KPI比較（検索数/クリック数/CTR/成功率、改善幅%を必ず記載）\\n3. 改善クエリ分析（改善上位5クエリ、悪化クエリ、Before/After数値、変化理由の仮説）\\n4. 構造的インサイト（コンテンツ不足/検索意図とのズレ/UI導線）\\n5. 次アクション（どの記事をどう改善するか、新規作成記事、優先順位High/Medium/Low）\\n6. トーン: 日本語・ビジネス向け・具体化重視\\n\\n# 制約\\n- JSONデータを必ず根拠として使う\\n- 推測だけの記述は禁止\\n- 箇条書きを多用し、読みやすくする\\n\\nこの要件に厳密に従って出力してください。'
       },
       product_reference: {
         summary: 'このカテゴリでは、Geminiに「Staffbase Technical Sales Support Agent」ロールを与え、staffbase_urls.mdのURLリストだけを根拠に技術回答を作る運用を行います。',
@@ -117,6 +135,33 @@
       });
     }
 
+    function buildAnalyticsPrompt(scenarioId) {
+      const selected = analyticsScenarioOptions.find((option) => option.id === scenarioId) || analyticsScenarioOptions[0];
+      const beforeUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_${selected.date}_${selected.id}_before.json`;
+      const afterUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_${selected.date}_${selected.id}_after.json`;
+      return geminiGuideMap.analytics.promptTemplate
+        .replace('{{beforeUrl}}', beforeUrl)
+        .replace('{{afterUrl}}', afterUrl);
+    }
+
+    function setupAnalyticsScenarioSelector() {
+      const panel = document.getElementById('analyticsScenarioPanel');
+      const select = document.getElementById('analyticsScenarioSelect');
+      select.innerHTML = '';
+      for (const option of analyticsScenarioOptions) {
+        const el = document.createElement('option');
+        el.value = option.id;
+        el.textContent = option.label;
+        select.appendChild(el);
+      }
+      select.value = 'qa_improvement';
+      document.getElementById('geminiPrompt').textContent = buildAnalyticsPrompt(select.value);
+      select.onchange = () => {
+        document.getElementById('geminiPrompt').textContent = buildAnalyticsPrompt(select.value);
+      };
+      panel.style.display = 'block';
+    }
+
     async function loadUseCase() {
       const params = new URLSearchParams(window.location.search);
       const category = params.get('category') || 'unknown';
@@ -124,7 +169,12 @@
       const guide = geminiGuideMap[category];
       document.getElementById('plainSummary').textContent = guide ? guide.summary : 'このカテゴリの説明は準備中です。';
       renderFlow(guide ? guide.flow : []);
-      document.getElementById('geminiPrompt').textContent = guide ? guide.prompt : '準備中';
+      document.getElementById('analyticsScenarioPanel').style.display = 'none';
+      if (category === 'analytics') {
+        setupAnalyticsScenarioSelector();
+      } else {
+        document.getElementById('geminiPrompt').textContent = guide ? guide.prompt : '準備中';
+      }
     }
 
     loadUseCase().catch((error) => {
