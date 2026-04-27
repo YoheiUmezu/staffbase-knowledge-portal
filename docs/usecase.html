@@ -88,12 +88,12 @@
   </main>
   <script>
     const analyticsScenarioOptions = [
-      { id: 'qa_improvement', label: 'FAQ改善（qa_improvement）', date: '20260426' },
-      { id: 'campaign_boost', label: '全社キャンペーン（campaign_boost）', date: '20260426' },
-      { id: 'policy_change', label: '制度変更周知（policy_change）', date: '20260426' },
-      { id: 'factory_busy', label: '繁忙期（factory_busy）', date: '20260426' },
-      { id: 'mobile_push', label: 'モバイル強化（mobile_push）', date: '20260426' },
-      { id: 'new_joiners', label: '新入社員期（new_joiners）', date: '20260426' }
+      { id: 'qa_improvement', label: 'FAQ改善（qa_improvement）' },
+      { id: 'campaign_boost', label: '全社キャンペーン（campaign_boost）' },
+      { id: 'policy_change', label: '制度変更周知（policy_change）' },
+      { id: 'factory_busy', label: '繁忙期（factory_busy）' },
+      { id: 'mobile_push', label: 'モバイル強化（mobile_push）' },
+      { id: 'new_joiners', label: '新入社員期（new_joiners）' }
     ];
     const analyticsScenarioLeadMap = {
       qa_improvement: '以下のデータをもとに、社内ナレッジ改善の分析レポートを作成してください。',
@@ -146,7 +146,7 @@
           '出力はエグゼクティブサマリー→KPI比較→改善クエリ分析→構造的インサイト→次アクション（優先度つき）の順にさせる。',
           '定期運用する場合は、この指示をGem（カスタムGem）として保存し、毎回URLだけ差し替える運用にする。'
         ],
-        promptTemplate: 'あなたはBtoB SaaS企業（特に製造業向け）のコンテンツ戦略担当です。\\n\\n{{leadText}}\\n\\n# 入力データ\\n- 分析レポート（Markdown）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/report.md\\n\\n- Beforeデータ（JSON）:\\n{{beforeUrl}}\\n\\n- Afterデータ（JSON）:\\n{{afterUrl}}\\n\\n# 目的\\n・検索体験（Search Experience）の改善結果を明確にする\\n・どのクエリで改善が起きたかを特定する\\n・今後のナレッジ改善アクションを提示する\\n\\n# 出力要件\\n1. エグゼクティブサマリー（5行以内、改善/未改善を明確化）\\n2. KPI比較（検索数/クリック数/CTR/成功率、改善幅%を必ず記載）\\n3. 改善クエリ分析（改善上位5クエリ、悪化クエリ、Before/After数値、変化理由の仮説）\\n4. 構造的インサイト（コンテンツ不足/検索意図とのズレ/UI導線）\\n5. 次アクション（どの記事をどう改善するか、新規作成記事、優先順位High/Medium/Low）\\n6. トーン: 日本語・ビジネス向け・具体化重視\\n\\n# 制約\\n- JSONデータを必ず根拠として使う\\n- 推測だけの記述は禁止\\n- 箇条書きを多用し、読みやすくする\\n\\nこの要件に厳密に従って出力してください。'
+        promptTemplate: 'あなたはBtoB SaaS企業（特に製造業向け）のコンテンツ戦略担当です。\\n\\n{{leadText}}\\n\\n# 入力データ\\n- シナリオ一覧（Markdown）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/scenario_index.md\\n\\n- シナリオ一覧（JSON）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/scenario_index.json\\n\\n- 分析レポート（Markdown）:\\n{{reportUrl}}\\n\\n- Beforeデータ（JSON）:\\n{{beforeUrl}}\\n\\n- Afterデータ（JSON）:\\n{{afterUrl}}\\n\\n# 目的\\n・検索体験（Search Experience）の改善結果を明確にする\\n・どのクエリで改善が起きたかを特定する\\n・今後のナレッジ改善アクションを提示する\\n\\n# 出力要件\\n1. エグゼクティブサマリー（5行以内、改善/未改善を明確化）\\n2. KPI比較（検索数/クリック数/CTR/成功率、改善幅%を必ず記載）\\n3. 改善クエリ分析（改善上位5クエリ、悪化クエリ、Before/After数値、変化理由の仮説）\\n4. 構造的インサイト（コンテンツ不足/検索意図とのズレ/UI導線）\\n5. 次アクション（どの記事をどう改善するか、新規作成記事、優先順位High/Medium/Low）\\n6. トーン: 日本語・ビジネス向け・具体化重視\\n\\n# 制約\\n- JSONデータを必ず根拠として使う\\n- 推測だけの記述は禁止\\n- 箇条書きを多用し、読みやすくする\\n\\nこの要件に厳密に従って出力してください。'
       },
       product_reference: {
         summary: 'このカテゴリでは、Geminiに「Staffbase Technical Sales Support Agent」ロールを与え、staffbase_urls.mdのURLリストだけを根拠に技術回答を作る運用を行います。',
@@ -188,11 +188,13 @@
 
     function buildAnalyticsPrompt(scenarioId) {
       const selected = analyticsScenarioOptions.find((option) => option.id === scenarioId) || analyticsScenarioOptions[0];
-      const beforeUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_${selected.date}_${selected.id}_before.json`;
-      const afterUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/analytics_${selected.date}_${selected.id}_after.json`;
+      const reportUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/latest_${selected.id}_report.md`;
+      const beforeUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/latest_${selected.id}_before.json`;
+      const afterUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/latest_${selected.id}_after.json`;
       const leadText = analyticsScenarioLeadMap[selected.id] || analyticsScenarioLeadMap.qa_improvement;
       return geminiGuideMap.analytics.promptTemplate
         .replace('{{leadText}}', leadText)
+        .replace('{{reportUrl}}', reportUrl)
         .replace('{{beforeUrl}}', beforeUrl)
         .replace('{{afterUrl}}', afterUrl);
     }
