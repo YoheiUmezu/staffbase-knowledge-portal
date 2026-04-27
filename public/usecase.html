@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>実際のユースケース | Staffbase Knowledge Portal</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; color: #1f2a44; }
+    header { background: linear-gradient(135deg, #0b1446, #1b2b78); color: #fff; padding: 28px 20px; }
+    main { max-width: 980px; margin: 20px auto 40px; padding: 0 16px; }
+    .nav { margin-bottom: 12px; }
+    .nav a { color: #fff; text-decoration: none; font-size: 14px; }
+    .hero h1 { margin: 0 0 8px; font-size: 28px; }
+    .hero p { margin: 0; opacity: 0.95; }
+    .panel { background: #fff; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 20px; margin-top: 14px; }
+    .chip { display: inline-block; background: #e9eeff; color: #0b1446; border-radius: 999px; padding: 6px 10px; font-size: 12px; font-weight: 700; }
+    h2 { margin: 0 0 10px; font-size: 20px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 8px 0; line-height: 1.6; }
+    .example { background: #f7f9ff; border: 1px solid #dce5ff; border-radius: 10px; padding: 14px; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav"><a href="index.html">← カテゴリ一覧へ戻る</a></div>
+    <div class="hero">
+      <h1 id="title">実際のユースケース</h1>
+      <p id="subtitle">業務での使い方を分かりやすく整理しています。</p>
+    </div>
+  </header>
+  <main>
+    <section class="panel">
+      <span class="chip" id="categoryChip">category</span>
+      <h2>何に使うか</h2>
+      <p id="useCase"></p>
+    </section>
+    <section class="panel">
+      <h2>使い方</h2>
+      <ul id="howToUse"></ul>
+    </section>
+    <section class="panel">
+      <h2>必要な入力</h2>
+      <ul id="inputs"></ul>
+    </section>
+    <section class="panel">
+      <h2>得られる成果物</h2>
+      <ul id="outputs"></ul>
+    </section>
+    <section class="panel">
+      <h2>具体例</h2>
+      <div id="example" class="example"></div>
+    </section>
+  </main>
+  <script>
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+    }
+
+    function renderList(elementId, values) {
+      const root = document.getElementById(elementId);
+      root.innerHTML = '';
+      for (const value of values || []) {
+        const li = document.createElement('li');
+        li.innerHTML = escapeHtml(value);
+        root.appendChild(li);
+      }
+    }
+
+    async function loadUseCase() {
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get('category') || 'unknown';
+      const dataFile = params.get('data') || `../data/${category}.json`;
+
+      const res = await fetch(dataFile);
+      if (!res.ok) {
+        throw new Error(`データの読み込みに失敗しました: ${res.status}`);
+      }
+      const json = await res.json();
+
+      document.getElementById('title').textContent = `${escapeHtml(category)} の実際のユースケース`;
+      document.getElementById('categoryChip').textContent = json.category || category;
+      document.getElementById('useCase').textContent = json.use_case || '準備中';
+      renderList('howToUse', json.how_to_use);
+      renderList('inputs', json.input);
+      renderList('outputs', json.output);
+      document.getElementById('example').textContent = json.example || '準備中';
+    }
+
+    loadUseCase().catch((error) => {
+      document.getElementById('subtitle').textContent = '読み込みに失敗しました。';
+      document.getElementById('useCase').textContent = error.message;
+    });
+  </script>
+</body>
+</html>

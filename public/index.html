@@ -42,7 +42,7 @@
         <h2 id="detailTitle"></h2>
         <p id="detailUseCase"></p>
         <div class="actions">
-          <button id="openDataButton" class="primary">データJSONを開く</button>
+          <button id="openDataButton" class="primary">実際のユースケース</button>
         </div>
         <div id="docContent"></div>
       </article>
@@ -148,7 +148,7 @@
       document.getElementById('detailTitle').textContent = category.title;
       document.getElementById('detailUseCase').textContent = `何に使うか: ${category.use_case || '準備中'}`;
       document.getElementById('openDataButton').onclick = () => {
-        window.open(`../${category.data}`, '_blank');
+        window.location.href = `usecase.html?category=${encodeURIComponent(category.id)}&data=${encodeURIComponent(category.data)}`;
       };
 
       const docRes = await fetch(`../${category.doc}`);
