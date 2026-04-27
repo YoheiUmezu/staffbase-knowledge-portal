@@ -144,14 +144,16 @@
         showList();
         return;
       }
+      const docPath = (category.doc || '').replace(/^docs\//, '');
+      const dataPath = (category.data || '').replace(/^data\//, 'data/');
 
       document.getElementById('detailTitle').textContent = category.title;
       document.getElementById('detailUseCase').textContent = `何に使うか: ${category.use_case || '準備中'}`;
       document.getElementById('openDataButton').onclick = () => {
-        window.open(`${category.data}`, '_blank');
+        window.open(dataPath, '_blank');
       };
 
-      const docRes = await fetch(`${category.doc}`);
+      const docRes = await fetch(docPath);
       const markdown = await docRes.text();
       document.getElementById('docContent').innerHTML = markdownToHtml(markdown);
       showDetail();

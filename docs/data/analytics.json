@@ -1,0 +1,19 @@
+{
+  "category": "analytics",
+  "use_case": "施策前後の効果をシナリオ別に比較したいとき",
+  "how_to_use": [
+    "シナリオを選択",
+    "before/afterを生成",
+    "レポートを確認"
+  ],
+  "input": [
+    "対象シナリオ",
+    "生成日"
+  ],
+  "output": [
+    "latest_*_before.json",
+    "latest_*_after.json",
+    "latest_*_report.md"
+  ],
+  "example": "例: campaign_boostのbefore/after差分を意思決定会議で共有。"
+}
