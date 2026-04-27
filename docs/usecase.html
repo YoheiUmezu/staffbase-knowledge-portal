@@ -83,7 +83,7 @@
         <span id="copyStatus" class="copy-status"></span>
       </div>
       <div id="geminiPrompt" class="prompt"></div>
-      <p class="url-note">URL（GitHub上のMarkdownファイル）をGeminiに貼って読み込めない場合は、URL先の内容をコピー・アンド・ペーストして入力してください。</p>
+      <p id="urlNote" class="url-note">URL（GitHub上のMarkdownファイル）をGeminiに貼って読み込めない場合は、URL先の内容をコピー・アンド・ペーストして入力してください。</p>
     </section>
   </main>
   <script>
@@ -124,7 +124,7 @@
       slides: {
         summary: 'Staffbaseブランドに沿ったスライドを再利用可能なJSONで作るためのリポジトリです。デザインルールを守ることが主眼です。',
         flow: [
-          'READMEとテンプレートJSONをGeminiへ渡し、「この資料の必須デザインルール」を抽出させる。',
+          'GithubからダウンロードしたREADMEとテンプレートJSONをGeminiへ渡し、「この資料の必須デザインルール」を抽出させる。',
           '伝えたいトピックを箇条書きで入力し、スライド構成案（表紙/要点/まとめ）を作らせる。',
           '完成案をレビューし、表現を業務向けに調整する。'
         ],
@@ -254,6 +254,7 @@
       const guide = geminiGuideMap[category];
       document.getElementById('plainSummary').textContent = guide ? guide.summary : 'このカテゴリの説明は準備中です。';
       renderFlow(guide ? guide.flow : []);
+      document.getElementById('urlNote').style.display = category === 'slides' ? 'none' : 'block';
       document.getElementById('analyticsScenarioPanel').style.display = 'none';
       document.getElementById('noteRolePanel').style.display = 'none';
       document.getElementById('rfpChecklistPanel').style.display = isRfp ? 'block' : 'none';
