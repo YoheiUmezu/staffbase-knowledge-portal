@@ -43,11 +43,11 @@
       <p id="plainSummary"></p>
     </section>
     <section class="panel">
-      <h2>Geminiで1から使うフロー</h2>
+      <h2 id="flowHeading">Geminiで1から使うフロー</h2>
       <div class="flow" id="geminiFlow"></div>
     </section>
     <section class="panel">
-      <span class="badge">そのままGeminiに貼り付けOK</span>
+      <span id="promptBadge" class="badge">そのままGeminiに貼り付けOK</span>
       <h2>推奨プロンプト</h2>
       <div id="analyticsScenarioPanel" class="scenario-panel" style="display:none;">
         <label for="analyticsScenarioSelect">分析シナリオを選択</label>
@@ -69,13 +69,14 @@
 
     const geminiGuideMap = {
       rfp: {
-        summary: 'RFP回答の根拠確認と回答文の整形を標準化するためのリポジトリです。技術実装よりも、正確な回答運用を支えることが目的です。',
+        summary: 'RFP回答はGeminiよりNotebookLM運用が速く安定します。このカテゴリでは、NotebookLMに公式ソースと補助KBを読み込ませ、根拠付きで責任ある回答を作る方法を案内します。',
         flow: [
-          'リポジトリのREADMEをGeminiに貼り、「非エンジニア向けに要約して」と依頼する。',
-          '手元のRFP設問を貼り、「設問の分類（機能/セキュリティ/運用）」をさせる。',
-          'Geminiに「根拠URLつき回答草案」を作成させ、社内レビュー後に提出版へ反映する。'
+          'NotebookLMで新しいノートブックを作成し、`staffbase_urls.md` のURLと `security_kb.md / isms_controls.md / ops_kb.md / compliance_kb.md / limitations_kb.md` をソースとして登録する。',
+          '最初の指示で「情報源は staffbase_urls.md と添付KBのみ」「外部一般情報や推測は禁止」「回答前にURLリストとリンク先を解析」を明示してルール固定する。',
+          'RFP設問を貼り、製品機能は必ず `/articles/` の個別記事URLまでドリルダウンさせる。トップURL（`/hc/ja`）のみの参照は不可にする。',
+          '出力は Summary / Details / 参照（個別記事URLまたはKBファイル名）形式に統一し、`limitations_kb.md` で制約クロスチェックしてから提出版へ反映する。'
         ],
-        prompt: 'あなたは提案支援アシスタントです。以下のRFP設問に対して、断定を避けつつ根拠付きで回答草案を作ってください。\\n\\n出力形式:\\n1) 回答案（です・ます調）\\n2) 前提条件\\n3) 要確認事項\\n4) 参照根拠'
+        prompt: 'Staffbase RFP Response Engine\\n\\n1. 役割とミッション\\nあなたは Staffbaseのシニア・セールスエンジニア（SE）です。顧客から提出されたRFP（Excel）に対し、「最新の公式ソース」のみに基づいて、正確かつ責任ある回答を生成してください。\\n\\n2. 唯一のプロダクト情報源（厳守）\\nURL: https://raw.githubusercontent.com/YoheiUmezu/staffbase-product-reference/main/staffbase_urls.md\\n- 回答前に必ず上記URLへアクセスし、記載されている各リンク先を解析すること\\n- URLリスト外の情報、一般知識、過去学習データに基づく回答は禁止\\n\\n3. 補助KB（ローカルファイルのみ参照）\\n- security_kb.md\\n- isms_controls.md\\n- ops_kb.md\\n- compliance_kb.md\\n- limitations_kb.md（必ず制約クロスチェック）\\n\\n4. 回答生成アルゴリズム\\n- 設問分類: 製品機能 / セキュリティ・運用・法務\\n- 情報抽出:\\n  - 製品機能: staffbase_urls.md から最適な個別記事URLを特定して内容抽出\\n  - 重要: `/hc/ja` のようなトップ・汎用URLの参照は禁止。必ず `/articles/` の個別記事までドリルダウン\\n- 制約検証: limitations_kb.md を必ず確認\\n- 根拠不在時: 「要確認（公式資料未記載）」\\n\\n5. 出力ルール\\n- 回答末尾は「参照：」で記載（「根拠」表記は不要）\\n- 参照は `https://support.staffbase.com/hc/ja/articles/〜` の個別記事URL、またはKBファイル名\\n- 「参照：https://support.staffbase.com/hc/ja」のような汎用URLのみの記載は禁止\\n\\n6. 禁止事項\\n- 一般論の流用禁止\\n- 曖昧回答の禁止\\n- 指定外ソースの外部検索結果の混入禁止\\n\\n---\\n以下のRFP設問に対して、上記ルールに厳密に従って回答してください。'
       },
       note: {
         summary: 'note記事の元データ（manus_input.md）を使って、Gemini上で記事生成から最終保存指示まで進めるためのリポジトリです。非エンジニアは「プロンプト運用」に集中すれば使えます。',
@@ -165,7 +166,10 @@
     async function loadUseCase() {
       const params = new URLSearchParams(window.location.search);
       const category = params.get('category') || 'unknown';
-      document.getElementById('title').textContent = `${escapeHtml(category)} のGemini使用ガイド`;
+      const isRfp = category === 'rfp';
+      document.getElementById('title').textContent = isRfp ? 'rfp のNotebookLM使用ガイド' : `${escapeHtml(category)} のGemini使用ガイド`;
+      document.getElementById('flowHeading').textContent = isRfp ? 'NotebookLMで1から使うフロー' : 'Geminiで1から使うフロー';
+      document.getElementById('promptBadge').textContent = isRfp ? 'そのままNotebookLMに貼り付けOK' : 'そのままGeminiに貼り付けOK';
       const guide = geminiGuideMap[category];
       document.getElementById('plainSummary').textContent = guide ? guide.summary : 'このカテゴリの説明は準備中です。';
       renderFlow(guide ? guide.flow : []);
