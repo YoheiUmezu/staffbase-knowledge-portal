@@ -148,10 +148,10 @@
       document.getElementById('detailTitle').textContent = category.title;
       document.getElementById('detailUseCase').textContent = `何に使うか: ${category.use_case || '準備中'}`;
       document.getElementById('openDataButton').onclick = () => {
-        window.open(`../${category.data}`, '_blank');
+        window.open(`${category.data}`, '_blank');
       };
 
-      const docRes = await fetch(`../${category.doc}`);
+      const docRes = await fetch(`${category.doc}`);
       const markdown = await docRes.text();
       document.getElementById('docContent').innerHTML = markdownToHtml(markdown);
       showDetail();
@@ -168,7 +168,10 @@
     }
 
     async function init() {
-      const res = await fetch('../data/index.json');
+      const res = await fetch('data/index.json');
+      if (!res.ok) {
+        throw new Error(`Failed to load index.json: ${res.status}`);
+      }
       portalIndex = await res.json();
       await renderList(portalIndex);
       document.getElementById('backButton').onclick = () => {
@@ -177,7 +180,10 @@
       window.addEventListener('hashchange', route);
       await route();
     }
-    init();
+    init().catch((error) => {
+      const root = document.getElementById('categories');
+      root.innerHTML = `<article class="card"><h3>読み込みエラー</h3><p>ポータルデータの取得に失敗しました。</p><p class="meta">${escapeHtml(error.message)}</p></article>`;
+    });
   </script>
 </body>
 </html>
