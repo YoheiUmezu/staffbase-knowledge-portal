@@ -27,6 +27,9 @@
     .scenario-panel label { font-size: 13px; font-weight: 700; color: #1f2a44; display: block; margin-bottom: 6px; }
     .scenario-panel select { width: 100%; max-width: 360px; padding: 8px 10px; border: 1px solid #c7d3f5; border-radius: 8px; background: #fff; }
     .scenario-note { margin-top: 8px; font-size: 12px; color: #506080; }
+    .scenario-urls { margin-top: 10px; padding: 10px; border-radius: 8px; background: #ffffff; border: 1px solid #dbe4ff; }
+    .scenario-urls a { color: #2148a6; text-decoration: none; }
+    .scenario-urls p { margin: 6px 0; font-size: 12px; line-height: 1.5; word-break: break-all; }
     .checklist { margin-top: 10px; padding: 12px; background: #f7f9ff; border: 1px solid #dce5ff; border-radius: 10px; }
     .checklist label { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0; font-size: 14px; line-height: 1.5; }
     .checklist input { margin-top: 2px; }
@@ -72,6 +75,7 @@
         <label for="analyticsScenarioSelect">分析シナリオを選択</label>
         <select id="analyticsScenarioSelect"></select>
         <p class="scenario-note">選択したシナリオに合わせて、Before/AfterのURLが自動で更新されます。</p>
+        <div id="analyticsScenarioUrls" class="scenario-urls"></div>
       </div>
       <div id="noteRolePanel" class="scenario-panel" style="display:none;">
         <label>ポジション別プロンプトを選択</label>
@@ -192,6 +196,8 @@
       const beforeUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/latest_${selected.id}_before.json`;
       const afterUrl = `https://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/latest_${selected.id}_after.json`;
       const leadText = analyticsScenarioLeadMap[selected.id] || analyticsScenarioLeadMap.qa_improvement;
+      const urlsRoot = document.getElementById('analyticsScenarioUrls');
+      urlsRoot.innerHTML = `<p><strong>report:</strong> <a href="${reportUrl}" target="_blank" rel="noopener noreferrer">${reportUrl}</a></p><p><strong>before:</strong> <a href="${beforeUrl}" target="_blank" rel="noopener noreferrer">${beforeUrl}</a></p><p><strong>after:</strong> <a href="${afterUrl}" target="_blank" rel="noopener noreferrer">${afterUrl}</a></p>`;
       return geminiGuideMap.analytics.promptTemplate
         .replace('{{leadText}}', leadText)
         .replace('{{reportUrl}}', reportUrl)
