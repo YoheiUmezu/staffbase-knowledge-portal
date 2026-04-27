@@ -30,6 +30,9 @@
     .checklist { margin-top: 10px; padding: 12px; background: #f7f9ff; border: 1px solid #dce5ff; border-radius: 10px; }
     .checklist label { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0; font-size: 14px; line-height: 1.5; }
     .checklist input { margin-top: 2px; }
+    .tabs { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .tab-btn { border: 1px solid #c7d3f5; background: #fff; color: #1f2a44; border-radius: 999px; padding: 7px 12px; font-size: 13px; cursor: pointer; }
+    .tab-btn.active { background: #0b1446; color: #fff; border-color: #0b1446; }
   </style>
 </head>
 <body>
@@ -63,6 +66,11 @@
         <select id="analyticsScenarioSelect"></select>
         <p class="scenario-note">選択したシナリオに合わせて、Before/AfterのURLが自動で更新されます。</p>
       </div>
+      <div id="noteRolePanel" class="scenario-panel" style="display:none;">
+        <label>ポジション別プロンプトを選択</label>
+        <div id="noteRoleTabs" class="tabs"></div>
+        <p class="scenario-note">選択したポジションに合わせて、プロンプト内容が切り替わります。</p>
+      </div>
       <div id="geminiPrompt" class="prompt"></div>
     </section>
   </main>
@@ -94,7 +102,12 @@
           'Step 2として、1500〜2000字・日本企業文脈・具体業務シーン/実例必須・締め文条件・【SEの独り言：現場の解像度】を指定して記事を生成させる。',
           'Step 3として、完成記事をMCP経由でNotionデータベース「note記事まとめ」に保存する指示（タイトル/ステータス/カテゴリ/作成日/本文）を実行させ、最後に保存完了報告を受ける。'
         ],
-        prompt: '# Role\\nあなたは「BtoB SaaS企業のセールスエンジニア兼コンテンツ編集者」です。\\n\\n# Step 1\\n以下URLを取得し、本日の執筆テーマと参考インプットを読み取ってください。\\nhttps://raw.githubusercontent.com/YoheiUmezu/note-article/main/manus_input.md\\n\\n# Step 2\\nnote記事を作成してください。\\n- 文字数: 1500〜2000字\\n- トーン: 専門的だが読みやすい（日本企業の稟議・現場運用・導入障壁を重視）\\n- 必須: 具体的な業務シーン + 1つ以上の実例\\n- 必須: 記事末尾に【SEの独り言：現場の解像度】を2〜3行\\n- 締め: staffbaseはツール導入にとどまらずEX課題の解決に取り組む旨\\n\\n# Step 3\\nMCPを使い、Notionデータベース「note記事まとめ」に保存してください。\\n- タイトル: 生成記事タイトル\\n- ステータス: Ready to Post\\n- カテゴリ: EX/従業員エンゲージメント\\n- 作成日: 本日\\n- 本文: Markdown全文\\n\\n# Output\\n1) 記事プレビュー\\n2) Notion保存完了報告\\n\\n# ガイドライン\\n機密情報（未発表機能/顧客名/社内数値）は含めず、一般的なEX改善Tipsに限定。\\n「個人の見解」である旨を明記し、公式ロゴは使用しない。'
+        promptByRole: {
+          se: '# Role\\nあなたは「BtoB SaaS企業のセールスエンジニア兼コンテンツ編集者」です。\\n\\n# Step 1\\n以下URLを取得し、本日の執筆テーマと参考インプットを読み取ってください。\\nhttps://raw.githubusercontent.com/YoheiUmezu/note-article/main/manus_input.md\\n\\n# Step 2\\nnote記事を作成してください。\\n- 文字数: 1500〜2000字\\n- トーン: 専門的だが読みやすい（日本企業の稟議・現場運用・導入障壁を重視）\\n- 必須: 具体的な業務シーン + 1つ以上の実例\\n- 必須: 記事末尾に【SEの独り言：現場の解像度】を2〜3行\\n- 締め: staffbaseはツール導入にとどまらずEX課題の解決に取り組む旨\\n\\n# Step 3\\nMCPを使い、Notionデータベース「note記事まとめ」に保存してください。\\n- タイトル: 生成記事タイトル\\n- ステータス: Ready to Post\\n- カテゴリ: EX/従業員エンゲージメント\\n- 作成日: 本日\\n- 本文: Markdown全文\\n\\n# Output\\n1) 記事プレビュー\\n2) Notion保存完了報告\\n\\n# ガイドライン\\n機密情報（未発表機能/顧客名/社内数値）は含めず、一般的なEX改善Tipsに限定。\\n「個人の見解」である旨を明記し、公式ロゴは使用しない。',
+          marketer: '# Role\\nあなたは「BtoB SaaS企業のコンテンツマーケター兼ストラテジックライター」です。\\nEX（従業員エクスペリエンス）領域における最新トレンドとSEO視点を掛け合わせ、note記事の生成から社内コンテンツ資産化までを行います。\\n\\n# Step 1: 外部コンテキストの取得\\n以下のURLから本日の執筆テーマとインプット情報を取得してください。\\nURL: https://raw.githubusercontent.com/YoheiUmezu/note-article/main/manus_input.md\\n\\n# Step 2: note記事の執筆\\n\\n## 目的\\n- 認知拡大（Top of Funnel）を意識した記事にする\\n- EX領域の課題を「共感→問題定義→解決示唆」で構造化する\\n- 営業・ホワイトペーパー・ウェビナーに転用可能な資産にする\\n\\n## 構成\\n- 読者は「人事・社内広報・情シス」\\n- 課題提起を強めに入れる（例：エンゲージメント低下、情報断絶）\\n- 解決策は“戦略レベル”で提示（ツール説明に寄りすぎない）\\n\\n## 制約・トーン\\n- 文字数：1500〜2000字\\n- トーン：戦略的・やや啓蒙的・読みやすい\\n- 必須要素：市場背景 or トレンドを最低1つ含める\\n- 禁止：プロダクトの機能説明中心の文章\\n\\n## 締め方\\nstaffbaseがEX領域の課題を「情報発信の仕組み」ではなく「組織の構造課題」として解決していることを示す\\n\\n# Step 3: MCPによるNotionへのアップロード\\n- DB: note記事まとめ\\n- ステータス: Ready to Post\\n- カテゴリ: EX/従業員エンゲージメント',
+          sales: '# Role\\nあなたは「BtoB SaaS企業のセールスエンジニア兼提案ストラテジスト」です。\\n顧客の意思決定プロセス（稟議・比較検討・ROI評価）を前提にnote記事を作成し、提案資料として再利用可能な形式にします。\\n\\n# Step 1: 外部コンテキストの取得\\nURL: https://raw.githubusercontent.com/YoheiUmezu/note-article/main/manus_input.md\\n\\n# Step 2: note記事の執筆\\n\\n## 目的\\n- 商談支援（Deal Acceleration）に直結するコンテンツにする\\n- 「なぜ今必要か」「導入障壁」「ROI」を明確化\\n- 営業資料・提案書に転用できる構造化情報を生成\\n\\n## 構成\\n- 読者：人事責任者・情報システム部・経営企画\\n- 必ず以下を含める：\\n  - 現場の典型的な失敗パターン\\n  - 導入前後の比較ストーリー（1社想定でOK）\\n  - 意思決定ポイント（稟議観点）\\n\\n## 制約・トーン\\n- 文字数：1500〜2000字\\n- トーン：実務的・ロジカル・ややコンサル寄り\\n- 必須：1つ以上の“導入現場のリアルなユースケース”\\n- 禁止：抽象論・精神論\\n\\n## 締め方\\nstaffbaseが単なる社内ポータルではなく「意思決定と行動を変えるEX基盤」であることを明示\\n\\n# Step 3: MCPによるNotionへのアップロード\\n- DB: note記事まとめ\\n- ステータス: Ready to Post\\n- カテゴリ: EX/従業員エンゲージメント',
+          country_manager: '# Role\\nあなたは「BtoB SaaS企業のカントリーマネージャー兼ストラテジックアドバイザー」です。\\n市場戦略・競争環境・組織課題を踏まえ、経営視点でnote記事を作成します。\\n\\n# Step 1: 外部コンテキストの取得\\nURL: https://raw.githubusercontent.com/YoheiUmezu/note-article/main/manus_input.md\\n\\n# Step 2: note記事の執筆\\n\\n## 目的\\n- 日本市場におけるEX戦略の位置づけを定義する\\n- 経営・HR・ITの意思決定レイヤーに刺さる論点整理\\n- パートナー・顧客向けの“思想的リード文書”として使えるレベルにする\\n\\n## 構成\\n- 読者：経営層・CHRO・CIO\\n- 以下を必須で含める：\\n  - 市場トレンド（日本企業特有の制約含む）\\n  - 組織変革におけるボトルネック\\n  - EX投資の戦略的意義\\n  - 競争環境の示唆（直接比較は避けるが構造は語る）\\n\\n## 制約・トーン\\n- 文字数：1500〜2000字\\n- トーン：経営的・構造的・落ち着いた論調\\n- 禁止：製品機能の説明\\n- 必須：1つ以上の「経営判断レベルの示唆」\\n\\n## 締め方\\nstaffbaseが単なるSaaSではなく「組織OSとしてのEX基盤」であることを明確に示す\\n\\n# Step 3: MCPによるNotionへのアップロード\\n- DB: note記事まとめ\\n- ステータス: Ready to Post\\n- カテゴリ: EX/従業員エンゲージメント'
+        }
       },
       slides: {
         summary: 'Staffbaseブランドに沿ったスライドを再利用可能なJSONで作るためのリポジトリです。デザインルールを守ることが主眼です。',
@@ -172,6 +185,38 @@
       panel.style.display = 'block';
     }
 
+    function setupNoteRoleTabs() {
+      const panel = document.getElementById('noteRolePanel');
+      const tabsRoot = document.getElementById('noteRoleTabs');
+      const roles = [
+        { id: 'se', label: 'セールスエンジニア' },
+        { id: 'marketer', label: 'マーケター' },
+        { id: 'sales', label: '営業' },
+        { id: 'country_manager', label: 'カントリーマネージャー' }
+      ];
+      tabsRoot.innerHTML = '';
+
+      const selectRole = (roleId) => {
+        document.getElementById('geminiPrompt').textContent = geminiGuideMap.note.promptByRole[roleId] || '準備中';
+        tabsRoot.querySelectorAll('.tab-btn').forEach((btn) => {
+          btn.classList.toggle('active', btn.dataset.role === roleId);
+        });
+      };
+
+      for (const role of roles) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tab-btn';
+        btn.dataset.role = role.id;
+        btn.textContent = role.label;
+        btn.onclick = () => selectRole(role.id);
+        tabsRoot.appendChild(btn);
+      }
+
+      panel.style.display = 'block';
+      selectRole('se');
+    }
+
     async function loadUseCase() {
       const params = new URLSearchParams(window.location.search);
       const category = params.get('category') || 'unknown';
@@ -183,9 +228,12 @@
       document.getElementById('plainSummary').textContent = guide ? guide.summary : 'このカテゴリの説明は準備中です。';
       renderFlow(guide ? guide.flow : []);
       document.getElementById('analyticsScenarioPanel').style.display = 'none';
+      document.getElementById('noteRolePanel').style.display = 'none';
       document.getElementById('rfpChecklistPanel').style.display = isRfp ? 'block' : 'none';
       if (category === 'analytics') {
         setupAnalyticsScenarioSelector();
+      } else if (category === 'note') {
+        setupNoteRoleTabs();
       } else {
         document.getElementById('geminiPrompt').textContent = guide ? guide.prompt : '準備中';
       }
