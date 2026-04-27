@@ -36,6 +36,7 @@
     .prompt-tools { margin-top: 10px; display: flex; align-items: center; gap: 8px; }
     .copy-btn { border: 1px solid #c7d3f5; background: #fff; color: #1f2a44; border-radius: 8px; padding: 7px 12px; font-size: 13px; cursor: pointer; }
     .copy-status { font-size: 12px; color: #d7e0ff; }
+    .url-note { margin-top: 10px; border: 1px solid #dce5ff; background: #f7f9ff; color: #314168; border-radius: 8px; padding: 10px 12px; font-size: 12px; line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -82,6 +83,7 @@
         <span id="copyStatus" class="copy-status"></span>
       </div>
       <div id="geminiPrompt" class="prompt"></div>
+      <p class="url-note">URL（GitHub上のMarkdownファイル）をGeminiに貼って読み込めない場合は、URL先の内容をコピー・アンド・ペーストして入力してください。</p>
     </section>
   </main>
   <script>
