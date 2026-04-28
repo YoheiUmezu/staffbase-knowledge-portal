@@ -59,7 +59,7 @@
       <p id="plainSummary"></p>
     </section>
     <section class="panel">
-      <h2 id="flowHeading">Geminiで1から使うフロー</h2>
+      <h2 id="flowHeading">Manusで1から使うフロー</h2>
       <div class="flow" id="geminiFlow"></div>
       <div id="rfpChecklistPanel" class="checklist" style="display:none;">
         <strong>NotebookLM 初回セットアップチェックリスト</strong>
@@ -69,7 +69,7 @@
       </div>
     </section>
     <section class="panel">
-      <span id="promptBadge" class="badge">そのままGeminiに貼り付けOK</span>
+      <span id="promptBadge" class="badge">そのままManusに貼り付けOK</span>
       <h2>推奨プロンプト</h2>
       <div id="analyticsScenarioPanel" class="scenario-panel" style="display:none;">
         <label for="analyticsScenarioSelect">分析シナリオを選択</label>
@@ -87,7 +87,7 @@
         <span id="copyStatus" class="copy-status"></span>
       </div>
       <div id="geminiPrompt" class="prompt"></div>
-      <p id="urlNote" class="url-note">URL（GitHub上のMarkdownファイル）をGeminiに貼って読み込めない場合は、URL先の内容をコピー・アンド・ペーストして入力してください。</p>
+      <p id="urlNote" class="url-note">URL（GitHub上のMarkdownファイル）をManusに貼って読み込めない場合は、URL先の内容をコピー・アンド・ペーストして入力してください。</p>
     </section>
   </main>
   <script>
@@ -110,7 +110,7 @@
 
     const geminiGuideMap = {
       rfp: {
-        summary: 'RFP回答はGeminiよりNotebookLM運用が速く安定します。このカテゴリでは、NotebookLMに公式ソースと補助KBを読み込ませ、根拠付きで責任ある回答を作る方法を案内します。',
+        summary: 'RFP回答はManusよりNotebookLM運用が速く安定します。このカテゴリでは、NotebookLMに公式ソースと補助KBを読み込ませ、根拠付きで責任ある回答を作る方法を案内します。',
         flow: [
           'NotebookLMで新しいノートブックを作成し、`staffbase_urls.md` のURLと `security_kb.md / isms_controls.md / ops_kb.md / compliance_kb.md / limitations_kb.md` をソースとして登録する。',
           '最初の指示で「情報源は staffbase_urls.md と添付KBのみ」「外部一般情報や推測は禁止」「回答前にURLリストとリンク先を解析」を明示してルール固定する。',
@@ -120,9 +120,9 @@
         prompt: 'Staffbase RFP Response Engine\\n\\n1. 役割とミッション\\nあなたは Staffbaseのシニア・セールスエンジニア（SE）です。顧客から提出されたRFP（Excel）に対し、「最新の公式ソース」のみに基づいて、正確かつ責任ある回答を生成してください。\\n\\n2. 唯一のプロダクト情報源（厳守）\\nURL: https://raw.githubusercontent.com/YoheiUmezu/staffbase-product-reference/main/staffbase_urls.md\\n- 回答前に必ず上記URLへアクセスし、記載されている各リンク先を解析すること\\n- URLリスト外の情報、一般知識、過去学習データに基づく回答は禁止\\n\\n3. 補助KB（ローカルファイルのみ参照）\\n- security_kb.md\\n- isms_controls.md\\n- ops_kb.md\\n- compliance_kb.md\\n- limitations_kb.md（必ず制約クロスチェック）\\n\\n4. 回答生成アルゴリズム\\n- 設問分類: 製品機能 / セキュリティ・運用・法務\\n- 情報抽出:\\n  - 製品機能: staffbase_urls.md から最適な個別記事URLを特定して内容抽出\\n  - 重要: `/hc/ja` のようなトップ・汎用URLの参照は禁止。必ず `/articles/` の個別記事までドリルダウン\\n- 制約検証: limitations_kb.md を必ず確認\\n- 根拠不在時: 「要確認（公式資料未記載）」\\n\\n5. 出力ルール\\n- 回答末尾は「参照：」で記載（「根拠」表記は不要）\\n- 参照は `https://support.staffbase.com/hc/ja/articles/〜` の個別記事URL、またはKBファイル名\\n- 「参照：https://support.staffbase.com/hc/ja」のような汎用URLのみの記載は禁止\\n\\n6. 禁止事項\\n- 一般論の流用禁止\\n- 曖昧回答の禁止\\n- 指定外ソースの外部検索結果の混入禁止\\n\\n---\\n以下のRFP設問に対して、上記ルールに厳密に従って回答してください。'
       },
       note: {
-        summary: 'note記事の元データ（manus_input.md）を使って、Gemini上で記事生成から最終保存指示まで進めるためのリポジトリです。非エンジニアは「プロンプト運用」に集中すれば使えます。',
+        summary: 'note記事の元データ（manus_input.md）を使って、Manus上で記事生成から最終保存指示まで進めるためのリポジトリです。非エンジニアは「プロンプト運用」に集中すれば使えます。',
         flow: [
-          'Geminiにロールを指定し、まず `https://raw.githubusercontent.com/YoheiUmezu/note-article/main/manus_input.md` を読み込ませる（Step 1）。',
+          'Manusにロールを指定し、まず `https://raw.githubusercontent.com/YoheiUmezu/note-article/main/manus_input.md` を読み込ませる（Step 1）。',
           'Step 2として、1500〜2000字・日本企業文脈・具体業務シーン/実例必須・締め文条件を指定して記事を生成させる。',
           'Step 3として、完成記事をMCP経由でNotionデータベース「note記事まとめ」に保存する指示（タイトル/ステータス/カテゴリ/作成日/本文）を実行させ、最後に保存完了報告を受ける。'
         ],
@@ -136,16 +136,16 @@
       slides: {
         summary: 'Staffbaseブランドに沿ったスライドを再利用可能なJSONで作るためのリポジトリです。デザインルールを守ることが主眼です。',
         flow: [
-          'GithubからダウンロードしたREADMEとテンプレートJSONをGeminiへ渡し、「この資料の必須デザインルール」を抽出させる。',
+          'GithubからダウンロードしたREADMEとテンプレートJSONをManusへ渡し、「この資料の必須デザインルール」を抽出させる。',
           '伝えたいトピックを箇条書きで入力し、スライド構成案（表紙/要点/まとめ）を作らせる。',
           '完成案をレビューし、表現を業務向けに調整する。'
         ],
         prompt: '以下のトピックを、添付のスライドルールに準拠して提案資料化してください。\\n出力: スライド番号 / タイトル / 1枚の要点 / 話す内容メモ'
       },
       analytics: {
-        summary: 'このカテゴリでは、Geminiに分析専用ロールを与えてBefore/After JSONを根拠に検索体験改善レポートを作成します。製造業向けの広報・DX担当が意思決定に使える粒度で出すことが目的です。',
+        summary: 'このカテゴリでは、Manusに分析専用ロールを与えてBefore/After JSONを根拠に検索体験改善レポートを作成します。製造業向けの広報・DX担当が意思決定に使える粒度で出すことが目的です。',
         flow: [
-          'Geminiで新規チャットを開き、下記プロンプトを先に貼って分析ルール（JSON根拠必須・抽象論禁止）を固定する。',
+          'Manusで新規チャットを開き、下記プロンプトを先に貼って分析ルール（JSON根拠必須・抽象論禁止）を固定する。',
           '入力データとして report.md / before.json / after.json の3URLを必ず渡し、「改善幅（%）」と「改善/未改善の判定」を明示させる。',
           '出力はエグゼクティブサマリー→KPI比較→改善クエリ分析→構造的インサイト→次アクション（優先度つき）の順にさせる。',
           '定期運用する場合は、この指示をGem（カスタムGem）として保存し、毎回URLだけ差し替える運用にする。'
@@ -153,9 +153,9 @@
         promptTemplate: 'あなたはBtoB SaaS企業（特に製造業向け）のコンテンツ戦略担当です。\\n\\n{{leadText}}\\n\\n# 入力データ\\n- シナリオ一覧（Markdown）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/scenario_index.md\\n\\n- シナリオ一覧（JSON）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/scenario_index.json\\n\\n- 分析レポート（Markdown）:\\n{{reportUrl}}\\n\\n- Beforeデータ（JSON）:\\n{{beforeUrl}}\\n\\n- Afterデータ（JSON）:\\n{{afterUrl}}\\n\\n# 目的\\n・検索体験（Search Experience）の改善結果を明確にする\\n・どのクエリで改善が起きたかを特定する\\n・今後のナレッジ改善アクションを提示する\\n\\n# 出力要件\\n1. エグゼクティブサマリー（5行以内、改善/未改善を明確化）\\n2. KPI比較（検索数/クリック数/CTR/成功率、改善幅%を必ず記載）\\n3. 改善クエリ分析（改善上位5クエリ、悪化クエリ、Before/After数値、変化理由の仮説）\\n4. 構造的インサイト（コンテンツ不足/検索意図とのズレ/UI導線）\\n5. 次アクション（どの記事をどう改善するか、新規作成記事、優先順位High/Medium/Low）\\n6. トーン: 日本語・ビジネス向け・具体化重視\\n\\n# 制約\\n- JSONデータを必ず根拠として使う\\n- 推測だけの記述は禁止\\n- 箇条書きを多用し、読みやすくする\\n\\nこの要件に厳密に従って出力してください。'
       },
       product_reference: {
-        summary: 'このカテゴリでは、Geminiに「Staffbase Technical Sales Support Agent」ロールを与え、staffbase_urls.mdのURLリストだけを根拠に技術回答を作る運用を行います。',
+        summary: 'このカテゴリでは、Manusに「Staffbase Technical Sales Support Agent」ロールを与え、staffbase_urls.mdのURLリストだけを根拠に技術回答を作る運用を行います。',
         flow: [
-          'Geminiで新規チャットを開き、下記ロールプロンプトを最初に貼って「このルールで回答して」と固定する。',
+          'Manusで新規チャットを開き、下記ロールプロンプトを最初に貼って「このルールで回答して」と固定する。',
           '質問ごとに「先に staffbase_urls.md を解析し、関連URLを選んでから回答する」ことを必ず指示する。',
           '運用頻度が高い場合は、同じ指示をGem（カスタムGem）として保存し、毎回の貼り付けを省略する。',
           '最終回答は Summary / Details / Reference URL の3部構成になっているかと、推測混入がないかだけ人が確認して送信する。'
@@ -266,9 +266,9 @@
       const category = params.get('category') || 'unknown';
       document.getElementById('backToCategoryLink').href = `index.html#category=${encodeURIComponent(category)}`;
       const isRfp = category === 'rfp';
-      document.getElementById('title').textContent = isRfp ? 'rfp のNotebookLM使用ガイド' : `${escapeHtml(category)} のGemini使用ガイド`;
-      document.getElementById('flowHeading').textContent = isRfp ? 'NotebookLMで1から使うフロー' : 'Geminiで1から使うフロー';
-      document.getElementById('promptBadge').textContent = isRfp ? 'そのままNotebookLMに貼り付けOK' : 'そのままGeminiに貼り付けOK';
+      document.getElementById('title').textContent = isRfp ? 'rfp のNotebookLM使用ガイド' : `${escapeHtml(category)} のManus使用ガイド`;
+      document.getElementById('flowHeading').textContent = isRfp ? 'NotebookLMで1から使うフロー' : 'Manusで1から使うフロー';
+      document.getElementById('promptBadge').textContent = isRfp ? 'そのままNotebookLMに貼り付けOK' : 'そのままManusに貼り付けOK';
       const guide = geminiGuideMap[category];
       document.getElementById('plainSummary').textContent = guide ? guide.summary : 'このカテゴリの説明は準備中です。';
       renderFlow(guide ? guide.flow : []);
