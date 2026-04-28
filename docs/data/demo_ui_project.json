@@ -1,0 +1,20 @@
+{
+  "category": "demo_ui_project",
+  "use_case": "デモUI提案を短時間で準備したいとき",
+  "how_to_use": [
+    "PROJECT_INSTRUCTIONを確認",
+    "templatesで提案骨子を作成",
+    "referencesとsample_deliverablesで品質を調整"
+  ],
+  "input": [
+    "案件要件",
+    "提案方針",
+    "既存ブランド情報"
+  ],
+  "output": [
+    "デモUI提案書",
+    "提案用素材一式",
+    "レビュー用ドラフト"
+  ],
+  "example": "例: 初回商談向けに、2日でデモUI提案のたたき台を作成してレビュー実施。"
+}

@@ -1,7 +1,7 @@
 {
   "portal_name": "staffbase-knowledge-portal",
   "description": "非エンジニア向けの業務ナレッジポータル",
-  "last_updated": "2026-04-27T09:46:41.448190+00:00",
+  "last_updated": "2026-04-28T17:23:31.740413+00:00",
   "categories": [
     {
       "id": "rfp",
@@ -37,6 +37,13 @@
       "doc": "docs/product_reference.md",
       "data": "data/product_reference.json",
       "use_case": "製品仕様の最新参照先をすぐ確認したいとき"
+    },
+    {
+      "id": "demo_ui_project",
+      "title": "デモUI提案",
+      "doc": "docs/demo_ui_project.md",
+      "data": "data/demo_ui_project.json",
+      "use_case": "デモUI提案を短時間で準備したいとき"
     }
   ]
 }
