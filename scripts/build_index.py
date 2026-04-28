@@ -15,6 +15,7 @@ CATEGORY_MAP = [
     ('slides', 'スライド生成'),
     ('analytics', '分析シナリオ'),
     ('product_reference', '製品リファレンス'),
+    ('demo_ui_project', 'デモUI提案'),
 ]
 
 

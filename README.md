@@ -5,7 +5,7 @@
 ## ディレクトリ構成
 
 - `docs/` : 業務説明に変換したナレッジMarkdown
-- `rfp/`, `note/`, `slides/`, `analytics/`, `product_reference/` : カテゴリ別の入口
+- `rfp/`, `note/`, `slides/`, `analytics/`, `product_reference/`, `demo_ui_project/` : カテゴリ別の入口
 - `public/index.html` : ポータル入口
 - `data/index.json` : ナビゲーション定義
 - `data/rfp.json`, `data/note.json`, `data/slides.json` : Genspark向け構造データ
@@ -38,3 +38,5 @@ python3 scripts/sync_genspark.py
 - https://github.com/YoheiUmezu/slide-template
 - https://github.com/YoheiUmezu/analytics_json
 - https://github.com/YoheiUmezu/staffbase-product-reference
+
+- https://github.com/YoheiUmezu/staffbase-demo-ui-project

@@ -143,6 +143,16 @@
         ],
         promptTemplate: 'あなたはBtoB SaaS企業（特に製造業向け）のコンテンツ戦略担当です。\\n\\n{{leadText}}\\n\\n# 入力データ\\n- シナリオ一覧（Markdown）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/scenario_index.md\\n\\n- シナリオ一覧（JSON）:\\nhttps://raw.githubusercontent.com/YoheiUmezu/analytics_json/main/analytics_json/scenario_index.json\\n\\n- 分析レポート（Markdown）:\\n{{reportUrl}}\\n\\n- Beforeデータ（JSON）:\\n{{beforeUrl}}\\n\\n- Afterデータ（JSON）:\\n{{afterUrl}}\\n\\n# 目的\\n・検索体験（Search Experience）の改善結果を明確にする\\n・どのクエリで改善が起きたかを特定する\\n・今後のナレッジ改善アクションを提示する\\n\\n# 出力要件\\n1. エグゼクティブサマリー（5行以内、改善/未改善を明確化）\\n2. KPI比較（検索数/クリック数/CTR/成功率、改善幅%を必ず記載）\\n3. 改善クエリ分析（改善上位5クエリ、悪化クエリ、Before/After数値、変化理由の仮説）\\n4. 構造的インサイト（コンテンツ不足/検索意図とのズレ/UI導線）\\n5. 次アクション（どの記事をどう改善するか、新規作成記事、優先順位High/Medium/Low）\\n6. トーン: 日本語・ビジネス向け・具体化重視\\n\\n# 制約\\n- JSONデータを必ず根拠として使う\\n- 推測だけの記述は禁止\\n- 箇条書きを多用し、読みやすくする\\n\\nこの要件に厳密に従って出力してください。'
       },
+      demo_ui_project: {
+        summary: 'このカテゴリでは、Manusを使ってデモUI提案の進行手順と成果物方針を整理します。提案準備を短時間で標準化するのが目的です。',
+        flow: [
+          'Manusにリポジトリ構成（PROJECT_INSTRUCTION / templates / references / sample_deliverables）を渡し、提案準備の全体段取りを作成させる。',
+          '案件要件を入力し、templatesベースで提案骨子（目的・構成・成果物）を出力させる。',
+          'sample_deliverablesを参照しながら、レビュー観点と改善タスクを箇条書きで整理させる。',
+          '最終的に社内共有用の実行プラン（誰が何をいつまでに）を作らせる。'
+        ],
+        prompt: '# Role\nあなたは「Staffbase向け提案プロジェクトの進行アシスタント」です。\n\n# Inputs\n- PROJECT_INSTRUCTION.md\n- templates/ 配下ファイル\n- references/ 配下資料\n- sample_deliverables/ 配下サンプル\n\n# Task\n上記を前提に、デモUI提案を最短で作る実行プランを作成してください。\n\n# Output\n1. 提案準備のステップ（時系列）\n2. まず作るべき成果物\n3. レビュー時のチェックリスト\n4. リスクと先回り対応\n\n# Constraints\n- 抽象論ではなく、実作業レベルで具体化\n- 箇条書き中心で簡潔に\n- 非エンジニアでも実行できる表現にする'
+      },
       product_reference: {
         summary: 'このカテゴリでは、Manusに「Staffbase Technical Sales Support Agent」ロールを与え、staffbase_urls.mdのURLリストだけを根拠に技術回答を作る運用を行います。',
         flow: [
