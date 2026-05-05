@@ -1,5 +1,4 @@
 /*
-  X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
 
@@ -8,3 +7,7 @@
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/asset/*.pdf
+  Content-Type: application/pdf
+  Cache-Control: public, max-age=86400
