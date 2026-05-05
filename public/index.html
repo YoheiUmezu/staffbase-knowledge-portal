@@ -229,7 +229,7 @@
         window.location.href = `usecase.html?category=${encodeURIComponent(category.id)}&data=${encodeURIComponent(category.data)}`;
       };
 
-      const docRes = await fetch(`../${category.doc}`);
+      const docRes = await fetch(`./${category.doc}`);
       const markdown = await docRes.text();
       document.getElementById('docContent').innerHTML = markdownToHtml(markdown);
 
@@ -279,7 +279,7 @@
     }
 
     async function init() {
-      const res = await fetch('../data/index.json');
+      const res = await fetch('./data/index.json');
       portalIndex = await res.json();
       await renderList(portalIndex);
       document.getElementById('backButton').onclick = () => {
