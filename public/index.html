@@ -93,8 +93,8 @@
   <script>
     let portalIndex = null;
     const categoryPdfMap = {
-      rfp: { title: 'RFP回答PDFビューア', path: 'asset/answered_rfp-03_機能要件.pdf' },
-      analytics: { title: 'Analytics PDFビューア', path: 'asset/mobile-push-report.pdf' },
+      rfp: { title: 'RFP回答PDFビューア', path: 'asset/answered_rfp - 03_機能要件.pdf' },
+      analytics: { title: 'Analytics PDFビューア', path: 'asset/mobile_push_report.pdf' },
     };
     const repoGuideMap = {
       rfp: {
@@ -253,7 +253,6 @@
         document.getElementById('repoDownloadLink').href = '#';
         document.getElementById('repoNote').textContent = '';
       }
-
       const pdfPanel = document.getElementById('pdfPanel');
       const pdfConfig = categoryPdfMap[category.id];
       if (pdfConfig) {
@@ -296,7 +295,8 @@
   https://github.com/Mintplex-Labs/anythingllm-embed/blob/main/README.md
   -->
   <script
-  data-embed-id="cbf8aff1-46c1-4870-aedf-9095d08f4c69"
+  data-embed-id="7dd7114c-006f-4918-86d7-494b3845cbc9"
+  data-default-model="gemma4:e4b"
   data-base-api-url="https://ai-rag.umeyouhei.work/api/embed"
   src="https://ai-rag.umeyouhei.work/embed/anythingllm-chat-widget.min.js">
   </script>
